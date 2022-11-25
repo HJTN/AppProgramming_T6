@@ -5,14 +5,124 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/subBox1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Main Page"
-        android:textSize="@dimen/size30"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:background="@color/teal_200" />
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/todayBestMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="오늘의 Best 메뉴!"
+            android:textSize="@dimen/fsize24"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/size30"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/todaySales"/>
+
+        <ImageView
+            android:id="@+id/todayBestMenuIcon"
+            android:layout_width="@dimen/size100"
+            android:layout_height="@dimen/size100"
+            android:src="@drawable/hamburger"
+            android:layout_marginTop="@dimen/size20"
+            android:layout_marginStart="@dimen/size60"
+            app:layout_constraintTop_toBottomOf="@id/todayBestMenu"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/todaySales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="오늘 판매한 금액"
+            android:textSize="@dimen/fsize24"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/size30"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/todayBestMenu"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/todayTotalAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="x,xxx,xxx원"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/fsize24"
+            android:layout_marginTop="@dimen/size40"
+            android:layout_marginEnd="@dimen/size40"
+            app:layout_constraintTop_toBottomOf="@id/todaySales"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/subBox2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/subBox1"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/recentSaleMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="최근에 판매한 메뉴"
+            android:textSize="@dimen/fsize24"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/size30"
+            android:layout_marginStart="@dimen/size20"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <Button
+            android:id="@+id/singleMenu"
+            android:layout_width="@dimen/size80"
+            android:layout_height="wrap_content"
+            android:text="단품"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fsize16"
+            android:background="@drawable/modifybtn"
+            android:layout_marginTop="@dimen/size20"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/recentSaleMenu"
+            app:layout_constraintEnd_toStartOf="@id/setMenu"/>
+
+        <Button
+            android:id="@+id/setMenu"
+            android:layout_width="@dimen/size80"
+            android:layout_height="wrap_content"
+            android:text="세트"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fsize16"
+            android:background="@drawable/modifybtn"
+            android:layout_marginTop="@dimen/size20"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/singleMenu"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/size20"
+        app:layout_constraintTop_toBottomOf="@id/subBox2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

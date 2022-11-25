@@ -65,5 +65,6 @@ class StockActivity : AppCompatActivity() {
                 Log.d("TabButton", "onTabReselected...")
             }
         })
+
     }
 }
