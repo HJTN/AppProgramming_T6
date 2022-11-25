@@ -19,6 +19,9 @@ class AccountActivity : AppCompatActivity() {
         val binding = ActivityAccountBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.bottomBar1.visibility = View.GONE
+        binding.bottomBar2.visibility = View.GONE
+
         val tabLayout = binding.tabs
 
         val tab1: TabLayout.Tab = tabLayout.newTab()
