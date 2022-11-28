@@ -1,11 +1,13 @@
 package com.example.kioskupgrade
 
 import android.content.Intent
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.kioskupgrade.databinding.ActivityMainBinding
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity() {
     var clickNum = 0

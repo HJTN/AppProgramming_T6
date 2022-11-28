@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "253190824071",
+    "project_id": "kiosk-b422a",
+    "storage_bucket": "kiosk-b422a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253190824071:android:edddd5041cd6c9ff8c9822",
+        "android_client_info": {
+          "package_name": "com.example.kioskupgrade"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253190824071-5sratddhg3n9h4k75no9n11mp7k4e74i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKfojIrDV5WXjjuG8Hwuc9MBNU3KALykA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253190824071-5sratddhg3n9h4k75no9n11mp7k4e74i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
