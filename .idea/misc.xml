@@ -3,6 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/Desktop/AppProg/app/src/main/res/layout/account_item.xml" value="0.20208333333333334" />
+        <entry key="..\:/Users/User/Desktop/AppProg/app/src/main/res/layout/activity_account.xml" value="0.20208333333333334" />
+        <entry key="..\:/Users/User/Desktop/AppProg/app/src/main/res/layout/activity_main.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/User/Desktop/AppProg/app/src/main/res/layout/activity_stock.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/User/Desktop/AppProg/app/src/main/res/layout/fragment_accountmain.xml" value="0.20208333333333334" />
+        <entry key="..\:/Users/User/Desktop/AppProg/app/src/main/res/layout/fragment_beverage.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/User/Desktop/AppProg/app/src/main/res/layout/fragment_cumulatesale.xml" value="0.5264133456904542" />
+        <entry key="..\:/Users/User/Desktop/AppProg/app/src/main/res/layout/fragment_stockmain.xml" value="0.16197916666666667" />
+        <entry key="..\:/Users/User/Desktop/AppProg/app/src/main/res/layout/fragment_totalamount.xml" value="0.16197916666666667" />
+        <entry key="..\:/Users/User/Desktop/AppProg/app/src/main/res/layout/menu_item.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/User/Desktop/AppProg/app/src/main/res/layout/selectedmenu_item.xml" value="0.19739583333333333" />
+        <entry key="..\:/Users/User/Desktop/AppProg/app/src/main/res/layout/stock_item.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/user/Desktop/AppProgramming_T6/app/src/main/res/drawable-v24/tab_background_unselected.xml" value="0.1395" />
         <entry key="..\:/Users/user/Desktop/AppProgramming_T6/app/src/main/res/drawable/adminmenu.xml" value="0.1395" />
         <entry key="..\:/Users/user/Desktop/AppProgramming_T6/app/src/main/res/drawable/btnstyle.xml" value="0.1395" />
