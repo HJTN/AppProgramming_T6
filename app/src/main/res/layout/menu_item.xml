@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id = "@+id/item_root"
+    android:orientation="vertical"
+    android:background="@drawable/item_background"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="3dp"
+    android:padding = "3dp"
+    android:gravity="center_horizontal">
+
+    <ImageView
+        android:id="@+id/itemImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/hamburger" />
+
+    <TextView
+        android:id="@+id/itemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="@dimen/fsize16"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/itemPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="@dimen/fsize16"
+        android:text = "xx원"/>
+
+    <Button
+        android:id="@+id/itemButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="장바구니\n담기"
+        android:textColor="@color/black" />
+
+</LinearLayout>
