@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kioskupgrade.Item
+import com.example.kioskupgrade.R
 import com.example.kioskupgrade.adapter.MenuAdapter
 import com.example.kioskupgrade.databinding.FragmentRecommendOrderBinding
 
@@ -23,10 +25,12 @@ class RecommendOrderFragment: Fragment() {
     ): View? {
         binding = FragmentRecommendOrderBinding.inflate(inflater, container, false)
 
-        val dataSet = mutableListOf<String>()
+        val dataSet = mutableListOf<Item>()
 
-        for (i in 1..10)
-            dataSet.add("세트메뉴 $i")
+        for (i in 1..10) {
+            var price:String = "${(i*1000).toString()} 원"
+            dataSet.add(Item("세트메뉴 $i",price, R.drawable.hamburger))
+        }
 
         val layoutManager = GridLayoutManager(binding.root.context, 3,
             GridLayoutManager.VERTICAL, false)
@@ -38,7 +42,6 @@ class RecommendOrderFragment: Fragment() {
 //            DividerItemDecoration(binding.root.context,
 //            LinearLayoutManager.VERTICAL))
 
-        dataSet.add("세트메뉴 11")
         (binding.recyclerView2.adapter as MenuAdapter).notifyDataSetChanged()
 
         return binding.root

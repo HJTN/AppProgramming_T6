@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/size10"
+    android:layout_margin="5dp"
     android:id="@+id/recyclerView2" />
 
     <!-- 주문화면의 햄버거,치킨 탭에서 사용하는 프래그먼트 레이아웃 -->

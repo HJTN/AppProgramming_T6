@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kioskupgrade.Item
+import com.example.kioskupgrade.R
 import com.example.kioskupgrade.adapter.MenuAdapter
 import com.example.kioskupgrade.adapter.StockAdapter
 import com.example.kioskupgrade.databinding.FragmentBeverageOrderBinding
@@ -30,10 +32,11 @@ class BeverageOrderFragment: Fragment() {
         //beverage3	    콜라
         //beverage4	    사이다
 
-        val dataSet = mutableListOf<String>()
-        dataSet.add("생수")
-        dataSet.add("콜라")
-        dataSet.add("사이다")
+        val dataSet = mutableListOf<Item>()
+        dataSet.add(Item("생수", "800 원", R.drawable.beverage))
+        dataSet.add(Item("콜라", "1500 원", R.drawable.beverage3))
+        dataSet.add(Item("사이다", "1500 원", R.drawable.beverage4))
+        dataSet.add(Item("아메리카노", "1800 원", R.drawable.beverage2))
 
         val layoutManager = GridLayoutManager(binding.root.context, 3,
             GridLayoutManager.VERTICAL, false)
@@ -45,8 +48,6 @@ class BeverageOrderFragment: Fragment() {
 //            DividerItemDecoration(binding.root.context,
 //                LinearLayoutManager.VERTICAL)
 //        )
-
-        dataSet.add("아메리카노")
         (binding.recyclerView2.adapter as MenuAdapter).notifyDataSetChanged()
 
         return binding.root

@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kioskupgrade.Item
+import com.example.kioskupgrade.R
 import com.example.kioskupgrade.adapter.MenuAdapter
 import com.example.kioskupgrade.adapter.StockAdapter
 import com.example.kioskupgrade.databinding.FragmentSidemenuOrderBinding
@@ -31,12 +33,12 @@ class SidemenuOrderFragment: Fragment() {
         //sidemenu4	    소프트콘
         //sidemenu5	    밀크쉐이크
 
-        val dataSet = mutableListOf<String>()
-        dataSet.add("감자 튀김")
-        dataSet.add("치킨 너겟")
-        dataSet.add("치즈 스틱")
-        dataSet.add("소프트 콘")
-
+        val dataSet = mutableListOf<Item>()
+        dataSet.add(Item("치킨너겟", "2200 원", R.drawable.sidemenu))
+        dataSet.add(Item("감자튀김", "2000 원", R.drawable.sidemenu2))
+        dataSet.add(Item("치즈스틱", "2200 원", R.drawable.sidemenu3))
+        dataSet.add(Item("소프트콘", "800 원", R.drawable.sidemenu4))
+        dataSet.add(Item("밀크쉐이크", "1800 원", R.drawable.sidemenu5))
 
         val layoutManager = GridLayoutManager(binding.root.context, 3,
             GridLayoutManager.VERTICAL, false)
@@ -49,7 +51,6 @@ class SidemenuOrderFragment: Fragment() {
 //                LinearLayoutManager.VERTICAL)
 //        )
 
-        dataSet.add("밀크 쉐이크")
         (binding.recyclerView2.adapter as MenuAdapter).notifyDataSetChanged()
 
         return binding.root

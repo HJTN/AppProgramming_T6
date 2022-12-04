@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kioskupgrade.Item
+import com.example.kioskupgrade.R
 import com.example.kioskupgrade.adapter.MenuAdapter
 import com.example.kioskupgrade.databinding.FragmentHamburgerOrderBinding
 
@@ -23,7 +25,7 @@ class HamburgerOrderFragment: Fragment() {
     ): View? {
         binding = FragmentHamburgerOrderBinding.inflate(inflater, container, false)
 
-        val dataSet = mutableListOf<String>()
+        val dataSet = mutableListOf<Item>()
 
         //burger		머쉬룸 버거
         //burger2		새우 버거
@@ -34,22 +36,26 @@ class HamburgerOrderFragment: Fragment() {
         //burger7		치즈 버거
         //burger8		피쉬 버거
 
+        dataSet.add(Item("머쉬룸 버거", "3300 원", R.drawable.burger))
+        dataSet.add(Item("새우 버거", "3400 원", R.drawable.burger2))
+        dataSet.add(Item("핫치킨 버거", "3600 원", R.drawable.burger3))
+        dataSet.add(Item("에그 버거", "3200 원", R.drawable.burger4))
+        dataSet.add(Item("불고기 버거", "3400 원", R.drawable.burger5))
+        dataSet.add(Item("치킨 버거", "3400 원", R.drawable.burger6))
+        dataSet.add(Item("치즈 버거", "3200 원", R.drawable.burger7))
+        dataSet.add(Item("피쉬 버거", "3300 원", R.drawable.burger8))
+
         //chicken2		스노우 어니언 치킨
         //chicken3		간장치킨
         //chicken4		양념치킨
         //chicken5		파닭
         //chicken6		후라이드
 
-
-
-        dataSet.add("불고기 버거")
-        dataSet.add("치킨 버거")
-        dataSet.add("핫치킨 버거")
-        dataSet.add("새우 버거")
-        dataSet.add("피쉬 버거")
-        dataSet.add("치즈 버거")
-        dataSet.add("머쉬룸 버거")
-
+        dataSet.add(Item("스노우 어니언 치킨", "16000 원", R.drawable.chicken2))
+        dataSet.add(Item("간장치킨", "15000 원", R.drawable.chicken3))
+        dataSet.add(Item("양념치킨", "15000 원", R.drawable.chicken4))
+        dataSet.add(Item("파닭", "17000 원", R.drawable.chicken5))
+        dataSet.add(Item("후라이드", "14000 원", R.drawable.chicken6))
 
         val layoutManager = GridLayoutManager(binding.root.context, 3,
             GridLayoutManager.VERTICAL, false)
@@ -62,7 +68,6 @@ class HamburgerOrderFragment: Fragment() {
 //                LinearLayoutManager.VERTICAL)
 //        )
 
-        dataSet.add("에그 버거")
         (binding.recyclerView2.adapter as MenuAdapter).notifyDataSetChanged()
 
         return binding.root
