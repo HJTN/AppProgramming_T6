@@ -1,27 +1,33 @@
 package com.example.kioskupgrade
 
 import android.os.Bundle
+import android.provider.ContactsContract.Data
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.example.kioskupgrade.DTO.Material
 import com.example.kioskupgrade.databinding.ActivityStockBinding
+import com.example.kioskupgrade.databinding.FragmentStockmainBinding
 import com.example.kioskupgrade.fragment.BeverageFragment
 import com.example.kioskupgrade.fragment.HamburgerFragment
 import com.example.kioskupgrade.fragment.StockmainFragment
 import com.example.kioskupgrade.fragment.SidemenuFragment
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.database.DatabaseReference
 
 class StockActivity : AppCompatActivity() {
     lateinit var fragmentManager: FragmentManager
     lateinit var transaction: FragmentTransaction
+    lateinit var database: DatabaseReference
+    var dataSet = mutableListOf<Material>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityStockBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        val asBinding = ActivityStockBinding.inflate(layoutInflater)
+        setContentView(asBinding.root)
 
-        val tabLayout = binding.tabs
+        val tabLayout = asBinding.tabs
 
         val tab1: TabLayout.Tab = tabLayout.newTab()
         tab1.text = "전체"
@@ -41,7 +47,7 @@ class StockActivity : AppCompatActivity() {
 
         fragmentManager = supportFragmentManager
         transaction = fragmentManager.beginTransaction()
-        transaction.add(binding.tabContent.id, StockmainFragment())
+        transaction.add(asBinding.tabContent.id, StockmainFragment())
         transaction.commit()
 
         tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
@@ -49,10 +55,10 @@ class StockActivity : AppCompatActivity() {
                 val transaction = supportFragmentManager.beginTransaction()
 
                 when(tab?.text) {
-                    "전체" -> transaction.replace(binding.tabContent.id, StockmainFragment())
-                    "버거" -> transaction.replace(binding.tabContent.id, HamburgerFragment())
-                    "음료" -> transaction.replace(binding.tabContent.id, BeverageFragment())
-                    "사이드 메뉴" -> transaction.replace(binding.tabContent.id, SidemenuFragment())
+                    "전체" -> transaction.replace(asBinding.tabContent.id, StockmainFragment())
+                    "버거" -> transaction.replace(asBinding.tabContent.id, HamburgerFragment())
+                    "음료" -> transaction.replace(asBinding.tabContent.id, BeverageFragment())
+                    "사이드 메뉴" -> transaction.replace(asBinding.tabContent.id, SidemenuFragment())
                 }
                 transaction.commit()
             }

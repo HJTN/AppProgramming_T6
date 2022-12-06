@@ -25,7 +25,8 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="@dimen/fsize16"
-        android:layout_marginStart="@dimen/size20"
+        android:ellipsize="end"
+        android:layout_marginStart="@dimen/size10"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/itemImg" />
@@ -34,9 +35,23 @@
         android:id="@+id/itemNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/size30"
+        android:layout_marginEnd="@dimen/size10"
         android:textStyle="bold"
         android:textSize="@dimen/fsize16"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/itemEdit"/>
+
+    <Button
+        android:id="@+id/itemEdit"
+        android:layout_width="@dimen/size60"
+        android:layout_height="@dimen/size30"
+        android:text="수정"
+        android:textSize="@dimen/fsize16"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:background="@drawable/mainbtn"
+        android:layout_marginEnd="@dimen/size10"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
