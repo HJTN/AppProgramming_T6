@@ -24,36 +24,36 @@ import java.util.Objects
 
 class StockViewHolder(val binding: StockItemBinding): RecyclerView.ViewHolder(binding.root)
 
-class StockAdapter(val dataSet: MutableList<Material>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class StockAdapter(val root: String, val dataSet: MutableList<Material>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     lateinit var inflater: LayoutInflater
-    lateinit var database: DatabaseReference
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         inflater = LayoutInflater.from(parent.context)
-        database = Firebase.database.reference
         return StockViewHolder(StockItemBinding.inflate(inflater, parent, false))
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        Log.d("RecyclerView", "onBindViewHolder(): $position")
+//        Log.d("RecyclerView", "onBindViewHolder(): $position")
         val binding = (holder as StockViewHolder).binding
         val dialogBinding = StockEditBinding.inflate(inflater)
 
         Glide.with(binding.root)
-            .load(dataSet[position].imgPath)
+            .load(dataSet[position].img)
             .placeholder(R.drawable.hamburger)
             .error(R.drawable.hamburger)
             .fallback(R.drawable.hamburger)
+            .centerInside()
             .into(binding.itemImg)
         binding.itemName.text = dataSet[position].name
         binding.itemNum.text = "x ${dataSet[position].num}"
 
         binding.itemEdit.setOnClickListener {
             Glide.with(dialogBinding.root)
-                .load(dataSet[position].imgPath)
+                .load(dataSet[position].img)
                 .placeholder(R.drawable.hamburger)
                 .error(R.drawable.hamburger)
                 .fallback(R.drawable.hamburger)
+                .centerInside()
                 .into(dialogBinding.materImg)
             dialogBinding.materName.text = dataSet[position].name
 
@@ -66,10 +66,9 @@ class StockAdapter(val dataSet: MutableList<Material>): RecyclerView.Adapter<Rec
 
                     var updateData = mutableMapOf<String, Any>()
                     updateData.put("num", editedNum)
+                    Firebase.database.reference.child("$root/${position+1}").updateChildren(updateData)
 
-                    database.child(dataSet[position].root).updateChildren(updateData)
-
-                    Toast.makeText(binding.root.context, "${dataSet[position].name} x ${editedNum}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(binding.root.context, "${binding.itemName.text} x ${editedNum}", Toast.LENGTH_SHORT).show()
                 })
                 setNegativeButton("취소", null)
                 show()
@@ -79,5 +78,9 @@ class StockAdapter(val dataSet: MutableList<Material>): RecyclerView.Adapter<Rec
 
     override fun getItemCount(): Int {
         return dataSet.size
+    }
+
+    fun getItems(): MutableList<Material> {
+        return dataSet
     }
 }

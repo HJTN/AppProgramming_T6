@@ -24,6 +24,7 @@ class TotalamountFragment: Fragment() {
     lateinit var binding : FragmentTotalamountBinding
     lateinit var database : DatabaseReference
     var dataSet = mutableListOf<Sale>()
+    var root = "Account_DB/Total"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +33,7 @@ class TotalamountFragment: Fragment() {
     ): View? {
         binding = FragmentTotalamountBinding.inflate(inflater, container, false)
 
-        database = Firebase.database.reference.child("sales_info").child("total_account")
+        database = Firebase.database.reference.child(root)
         database.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (item in snapshot.children) {

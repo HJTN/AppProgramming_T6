@@ -24,6 +24,7 @@ class CumulatesaleFragment: Fragment() {
     lateinit var binding : FragmentCumulatesaleBinding
     lateinit var database : DatabaseReference
     var dataSet = mutableListOf<Sale>()
+    var root = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +33,7 @@ class CumulatesaleFragment: Fragment() {
     ): View? {
         binding = FragmentCumulatesaleBinding.inflate(inflater, container, false)
 
-        database = Firebase.database.reference.child("sales_info").child("cumulated_info")
+        database = Firebase.database.reference.child(root)
         database.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (item in snapshot.children) {

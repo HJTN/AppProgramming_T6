@@ -1,5 +1,6 @@
 package com.example.kioskupgrade
 
+import android.app.Fragment
 import android.os.Bundle
 import android.provider.ContactsContract.Data
 import android.util.Log
@@ -71,6 +72,5 @@ class StockActivity : AppCompatActivity() {
                 Log.d("TabButton", "onTabReselected...")
             }
         })
-
     }
 }

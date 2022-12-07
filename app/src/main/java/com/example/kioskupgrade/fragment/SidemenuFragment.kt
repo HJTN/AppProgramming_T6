@@ -22,7 +22,7 @@ class SidemenuFragment: Fragment() {
     lateinit var binding : FragmentSidemenuBinding
     lateinit var database : DatabaseReference
     var dataSet = mutableListOf<Material>()
-    var root = "sidemenu_stock"
+    var root = "Stock_DB/Side-Menu"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,10 +36,12 @@ class SidemenuFragment: Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (dataSet.size > 0)
                     dataSet.clear()
+
                 for (item in snapshot.children) {
                     val key = item.key
                     val data = item.getValue(Material::class.java)
                     if (data != null) {
+//                        Log.d("DB",data.img_path)
                         dataSet.add(data)
                     }
                 }
@@ -53,7 +55,7 @@ class SidemenuFragment: Fragment() {
         Log.d("Data",dataSet.toString())
         binding.recyclerView.layoutManager = LinearLayoutManager(binding.root.context)
 
-        binding.recyclerView.adapter = StockAdapter(dataSet)
+        binding.recyclerView.adapter = StockAdapter(root, dataSet)
 
         binding.recyclerView.addItemDecoration(
             DividerItemDecoration(binding.root.context,

@@ -56,7 +56,7 @@ class AccountActivity : AppCompatActivity() {
                         binding.bottomBar2.visibility = View.GONE
                     }
                     "1일 판매량" -> {
-                        transaction.replace(binding.tabContent.id, OnedaysaleFragment())
+                        transaction.replace(binding.tabContent.id, TodaysaleFragment())
                         binding.bottomBar1.visibility = View.VISIBLE
                         binding.bottomBar2.visibility = View.VISIBLE
                         binding.infoTitle.text = "총 판매량"

@@ -1,28 +1,16 @@
 package com.example.kioskupgrade.DTO
 
 class Material {
-    var root: String = ""
     var name: String = ""
-    var imgPath: String = ""
+    var img: String = ""
     var num: Int = 0
 
     constructor()
 
-    constructor(root:String, name:String, imgPath:String, num:Int) {
-        this.root = root
+    constructor(name:String, img:String, num:Int) {
         this.name = name
-        this.imgPath = imgPath
+        this.img = img
         this.num = num
-    }
-
-    @JvmName("getRoot1")
-    fun getRoot(): String {
-        return this.root
-    }
-
-    @JvmName("setRoot1")
-    fun setRoot(key:String) {
-        this.root = key
     }
 
     @JvmName("getName1")
@@ -35,14 +23,14 @@ class Material {
         this.name = name
     }
 
-    @JvmName("getImgPath1")
-    fun getImgPath(): String {
-        return this.imgPath
+    @JvmName("getImg1")
+    fun getImg(): String {
+        return this.img
     }
 
-    @JvmName("setImgPath1")
-    fun setImgPath(img_path: String) {
-        this.imgPath = img_path
+    @JvmName("setImg1")
+    fun setImg(img: String) {
+        this.img = img
     }
 
     @JvmName("getNum1")

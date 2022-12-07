@@ -17,13 +17,14 @@ class AccountAdapter(val dataSet: MutableList<Sale>): RecyclerView.Adapter<Recyc
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         Log.d("RecyclerView", "onBindViewHolder(): $position")
-        val binding = (holder as StockViewHolder).binding
+        val binding = (holder as AccountViewHolder).binding
 
         binding.itemName.text = dataSet[position].name
         binding.itemNum.text = "x ${dataSet[position].num}"
+        binding.itemAccount.text = dataSet[position].account.toString()
 
         binding.itemRoot.setOnClickListener {
-            Toast.makeText(binding.root.context, "${binding.itemName.text} Clicked", Toast.LENGTH_SHORT).show()
+            Toast.makeText(binding.root.context, "${binding.itemName.text} x ${binding.itemNum.text} x ${binding.itemAccount.text}", Toast.LENGTH_SHORT).show()
         }
     }
 

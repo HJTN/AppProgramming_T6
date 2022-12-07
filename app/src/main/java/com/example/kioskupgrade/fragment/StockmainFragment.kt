@@ -22,7 +22,7 @@ class StockmainFragment: Fragment() {
     lateinit var binding : FragmentStockmainBinding
     lateinit var database : DatabaseReference
     var dataSet = mutableListOf<Material>()
-    var root = "food_material"
+    var root = "Stock_DB/Material"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,6 +36,7 @@ class StockmainFragment: Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (dataSet.size > 0)
                     dataSet.clear()
+
                 for (item in snapshot.children) {
                     val key = item.key
                     val data = item.getValue(Material::class.java)
@@ -54,11 +55,12 @@ class StockmainFragment: Fragment() {
         Log.d("Data",dataSet.toString())
         binding.recyclerView.layoutManager = LinearLayoutManager(binding.root.context)
 
-        binding.recyclerView.adapter = StockAdapter(dataSet)
+        binding.recyclerView.adapter = StockAdapter(root, dataSet)
 
         binding.recyclerView.addItemDecoration(
             DividerItemDecoration(binding.root.context,
-            LinearLayoutManager.VERTICAL))
+                LinearLayoutManager.VERTICAL)
+        )
 
         return binding.root
     }
