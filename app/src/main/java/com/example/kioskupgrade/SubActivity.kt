@@ -1,9 +1,11 @@
 package com.example.kioskupgrade
 
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -70,8 +72,6 @@ class SubActivity : AppCompatActivity() {
             }
         })
 
-
-
         val next1Button: Button = findViewById(R.id.purchase)
         next1Button.setOnClickListener {
             val intent = Intent(applicationContext, paymentActivity::class.java)
@@ -80,13 +80,25 @@ class SubActivity : AppCompatActivity() {
         val next2Button: Button = findViewById(R.id.redo)
         next2Button.setOnClickListener{popupbtnlistener()}
 
-
+        if(CrossActivityInfo.isTutorial){
+            SetTutorialView(binding)
+        }
     }
     fun popupbtnlistener(){
         val customdialog = CustomDialog(this)
         customdialog.show()
     }
 
+    fun SetTutorialView(binding : ActivityOrderBinding){
+        val panels : MutableList<ImageView> = mutableListOf()
+        panels.add(binding.tutorialPanel1)
+        panels.add(binding.tutorialPanel2)
+        panels.add(binding.tutorialPanel3)
+        panels.add(binding.tutorialPanel4)
 
+        val tutorial_renderer = TutorialViewRenderer(this.applicationContext, panels, binding.tutorialText)
+        tutorial_renderer.Highlight(0f, 0.05f, 1f, 0.12f)
+        tutorial_renderer.SetText("종류를 선택해주세요",0.3f, 0.5f, 30f)
+    }
 }
 
