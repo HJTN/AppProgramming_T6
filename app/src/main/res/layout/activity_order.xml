@@ -147,7 +147,17 @@
         android:textColor="@color/white"
         android:gravity="center"
         android:layout_marginTop="@dimen/size30"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/tutorial_next_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/round_btn"
+        android:text="완료"
+        android:textColor="@color/white"
+        android:fontFamily="@font/fff"
+        android:textSize="20sp"
+        android:visibility="invisible"/>
 
 </FrameLayout>

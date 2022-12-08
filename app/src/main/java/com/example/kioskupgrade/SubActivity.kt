@@ -96,9 +96,11 @@ class SubActivity : AppCompatActivity() {
         panels.add(binding.tutorialPanel3)
         panels.add(binding.tutorialPanel4)
 
-        val tutorial_renderer = TutorialViewRenderer(this.applicationContext, panels, binding.tutorialText)
-        tutorial_renderer.Highlight(0f, 0.05f, 1f, 0.12f)
-        tutorial_renderer.SetText("종류를 선택해주세요",0.3f, 0.5f, 30f)
+        val tutorial_renderer = TutorialViewRenderer(this.applicationContext, panels, binding.tutorialText, binding.tutorialNextButton)
+        //tutorial_renderer.Highlight(0.45f, 0.73f, 1f, 1f)
+        //tutorial_renderer.SetText("",0.01f, 1.35f, 30f)
+        //tutorial_renderer.SetNextButton(0.1f, 2f)
+        tutorial_renderer.StartTutorial()
     }
 }
 

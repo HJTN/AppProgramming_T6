@@ -2,11 +2,52 @@ package com.example.kioskupgrade
 
 import android.content.Context
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 
 //튜토리얼 화면 렌더링을 위한 클래스. 사용하는 쪽에서 application context와 4개의 반투명 ImageView를 넘겨주며 생성한다.
-class TutorialViewRenderer(val context: Context, val panels : MutableList<ImageView>, val tv : TextView) {
+class TutorialViewRenderer(val context: Context,
+                           val panels : MutableList<ImageView>, val tv : TextView, val btn : Button) {
+
+    val params = arrayOf(arrayOf(0f, 0.05f, 1f, 0.12f,
+        "종류를 선택해주세요", 0.3f, 0.5f, 30f,
+        0.6f, 0.7f),
+        arrayOf(0f, 0.05f, 1f, 0.73f,
+            "메뉴를 담아주세요",0.01f, 1.45f, 30f,
+            0.1f, 1.55f),
+        arrayOf(0.45f, 0.73f, 1f, 1f,
+            "",0.01f, 1.35f, 30f,
+            0.1f, 2f),
+        arrayOf(0.5f, 0.23f, 0.97f, 0.52f,
+            "",0.01f, 1.35f, 30f,
+            0.1f, 2f),
+        arrayOf(0.05f, 0.6f, 0.97f, 1f,
+            "",0.01f, 1.35f, 30f,
+            0.1f, 2f))
+    var phase = 0
+    val maxphase = 4
+
+    fun StartTutorial(){
+        Highlight(params[phase][0] as Float, params[phase][1] as Float
+        ,params[phase][2] as Float,params[phase][3] as Float)
+
+        SetText(params[phase][4] as String, params[phase][5] as Float,params[phase][6] as Float,params[phase][7] as Float)
+
+        SetNextButton(params[phase][8] as Float, params[phase][9] as Float)
+    }
+
+    fun PassPhase_to(p : Int){
+        phase = p
+    }
+
+    fun MovePhase(){
+        phase += 1
+        Release()
+        if(phase <= maxphase){
+            StartTutorial()
+        }
+    }
 
     //원하는 영역 이외의 부분을 터치불가, 어둡게 만든다.
     //lx_ratio, ly_ratio 에는 원하는 영역의 왼쪽 위 좌표를 화면상의 비율로 표현해 넘겨주면 된다. 예를들어 화면중앙은 0.5f가 된다.
@@ -60,6 +101,17 @@ class TutorialViewRenderer(val context: Context, val panels : MutableList<ImageV
         tv.requestLayout()
     }
 
+    fun SetNextButton(x_ratio:Float, y_ratio:Float){
+        val display = context?.resources?.displayMetrics
+        val deviceWidth : Int = display?.widthPixels!!
+        val deviceHeight : Int = display?.heightPixels!!
+
+        btn.visibility = View.VISIBLE
+        btn.x = deviceWidth.times(x_ratio); btn.y = deviceWidth.times(y_ratio)
+        btn.setOnClickListener({ MovePhase() })
+        btn.requestLayout()
+    }
+
     //하이라이트 상태를 해제시킨다.
     fun Release(){
         for(i in 0..3){
@@ -68,5 +120,8 @@ class TutorialViewRenderer(val context: Context, val panels : MutableList<ImageV
         }
         tv.visibility = View.INVISIBLE
         tv.requestLayout()
+
+        btn.visibility = View.INVISIBLE
+        btn.requestLayout()
     }
 }
