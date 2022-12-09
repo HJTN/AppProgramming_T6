@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="size2">2dp</dimen>
+    <dimen name="size10">10dp</dimen>
+    <dimen name="size15">15dp</dimen>
+    <dimen name="size18">18dp</dimen>
+    <dimen name="size20">20dp</dimen>
+    <dimen name="size25">25dp</dimen>
+    <dimen name="size30">30dp</dimen>
+    <dimen name="size40">40dp</dimen>
+    <dimen name="size60">60dp</dimen>
+    <dimen name="size80">80dp</dimen>
+    <dimen name="size100">100dp</dimen>
+    <dimen name="size120">120dp</dimen>
+    <dimen name="size160">160dp</dimen>
+
+    <dimen name="fsize16">16sp</dimen>
+    <dimen name="fsize24">24sp</dimen>
+    <dimen name="fsize32">32sp</dimen>
+</resources>
