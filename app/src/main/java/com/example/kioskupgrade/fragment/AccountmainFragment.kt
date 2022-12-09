@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.example.kioskupgrade.DTO.Sale
 import com.example.kioskupgrade.R
 import com.example.kioskupgrade.adapter.AccountAdapter
@@ -43,7 +42,16 @@ class AccountmainFragment: Fragment() {
 
                 for (item in snapshot.children) {
                     val key = item.key
-                    val data = item.getValue(Sale::class.java)
+                    var data = Sale()
+                    for (sub in item.children) {
+                        when(sub.key) {
+                            "img" -> data.setImg(R.drawable.burger)
+                            "name" -> data.setName(sub.value.toString())
+                            "num" -> data.setNum(sub.value.toString().toInt())
+                            "account" -> data.setAccount(sub.value.toString().toInt())
+                        }
+                    }
+//                    val data = item.getValue(Sale::class.java)
                     if (data != null) {
                         dataSet.add(data)
                     }
@@ -59,14 +67,7 @@ class AccountmainFragment: Fragment() {
         var popular = getPopular(dataSet)
         var totalAccount = getTotalAccount(dataSet)
 
-        // 화면 설정
-//        Glide.with(this)
-//            .load(popular.img)
-//            .placeholder(R.drawable.hamburger)
-//            .error(R.drawable.hamburger)
-//            .fallback(R.drawable.hamburger)
-//            .centerInside()
-//            .into(binding.todayBestMenuIcon)
+
         binding.todayTotalAccount.text = "$totalAccount 원"
         // Todo
         binding.singleMenu.setOnClickListener {

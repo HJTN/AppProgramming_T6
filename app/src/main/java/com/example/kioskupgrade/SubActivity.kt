@@ -1,36 +1,34 @@
 package com.example.kioskupgrade
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.example.kioskupgrade.DTO.Material
-import com.example.kioskupgrade.databinding.ActivityStockBinding
-import com.example.kioskupgrade.fragment.BeverageFragment
-import com.example.kioskupgrade.fragment.HamburgerFragment
-import com.example.kioskupgrade.fragment.StockmainFragment
-import com.example.kioskupgrade.fragment.SidemenuFragment
+import com.example.kioskupgrade.databinding.ActivityOrderBinding
+import com.example.kioskupgrade.fragment.BeverageOrderFragment
+import com.example.kioskupgrade.fragment.HamburgerOrderFragment
+import com.example.kioskupgrade.fragment.SidemenuOrderFragment
+import com.example.teamprogect.fragment.RecommendOrderFragment
 import com.google.android.material.tabs.TabLayout
-import com.google.firebase.database.DatabaseReference
 
-//재고확인 화면 관리
+//주문 화면 관리
 
-class StockActivity : AppCompatActivity() {
+class SubActivity : AppCompatActivity() {
     lateinit var fragmentManager: FragmentManager
     lateinit var transaction: FragmentTransaction
-    lateinit var database: DatabaseReference
-    var dataSet = mutableListOf<Material>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityStockBinding.inflate(layoutInflater)
+        val binding = ActivityOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val tabLayout = binding.tabs
 
         val tab1: TabLayout.Tab = tabLayout.newTab()
-        tab1.text = "식재료"
+        tab1.text = "추천 메뉴"
         tabLayout.addTab(tab1)
 
         val tab2: TabLayout.Tab = tabLayout.newTab()
@@ -47,7 +45,7 @@ class StockActivity : AppCompatActivity() {
 
         fragmentManager = supportFragmentManager
         transaction = fragmentManager.beginTransaction()
-        transaction.add(binding.tabContent.id, StockmainFragment())
+        transaction.add(binding.tabContent.id, RecommendOrderFragment())
         transaction.commit()
 
         tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
@@ -55,10 +53,10 @@ class StockActivity : AppCompatActivity() {
                 val transaction = supportFragmentManager.beginTransaction()
 
                 when(tab?.text) {
-                    "식재료" -> transaction.replace(binding.tabContent.id, StockmainFragment())
-                    "버거" -> transaction.replace(binding.tabContent.id, HamburgerFragment())
-                    "음료" -> transaction.replace(binding.tabContent.id, BeverageFragment())
-                    "사이드 메뉴" -> transaction.replace(binding.tabContent.id, SidemenuFragment())
+                    "추천 메뉴" -> transaction.replace(binding.tabContent.id, RecommendOrderFragment())
+                    "버거" -> transaction.replace(binding.tabContent.id, HamburgerOrderFragment())
+                    "음료" -> transaction.replace(binding.tabContent.id, BeverageOrderFragment())
+                    "사이드 메뉴" -> transaction.replace(binding.tabContent.id, SidemenuOrderFragment())
                 }
                 transaction.commit()
             }
@@ -71,5 +69,24 @@ class StockActivity : AppCompatActivity() {
                 Log.d("TabButton", "onTabReselected...")
             }
         })
+
+
+
+        val next1Button: Button = findViewById(R.id.purchase)
+        next1Button.setOnClickListener {
+            val intent = Intent(applicationContext, paymentActivity::class.java)
+            startActivity(intent)
+        }
+        val next2Button: Button = findViewById(R.id.redo)
+        next2Button.setOnClickListener{popupbtnlistener()}
+
+
     }
+    fun popupbtnlistener(){
+        val customdialog = CustomDialog(this)
+        customdialog.show()
+    }
+
+
 }
+

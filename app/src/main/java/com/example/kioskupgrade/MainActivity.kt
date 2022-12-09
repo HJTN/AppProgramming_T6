@@ -5,9 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.kioskupgrade.databinding.ActivityMainBinding
-import com.google.android.gms.tasks.OnSuccessListener
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+
+//메인화면(어플 실행시 첫 화면) 제어
 
 class MainActivity : AppCompatActivity() {
     var clickNum = 0
@@ -20,11 +19,12 @@ class MainActivity : AppCompatActivity() {
         binding.stockBtn.visibility = View.GONE
         binding.accountBtn.visibility = View.GONE
 
-        binding.logo.setOnLongClickListener(object: View.OnLongClickListener{
-            override fun onLongClick(p0: View?): Boolean {
+
+        binding.logo.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(p0: View?) {
                 clickNum++
 
-                if (clickNum % 2 == 1) {
+                if (clickNum  > 9) {
                     binding.stockBtn.visibility = View.VISIBLE
                     binding.accountBtn.visibility = View.VISIBLE
                 }
@@ -32,12 +32,18 @@ class MainActivity : AppCompatActivity() {
                     binding.stockBtn.visibility = View.GONE
                     binding.accountBtn.visibility = View.GONE
                 }
-                return true
             }
         })
         binding.kioskmainBtn.setOnClickListener(object: View.OnClickListener{
             override fun onClick(view: View?) {
-                val intent = Intent(applicationContext, KioskmainActivity::class.java)
+                val intent = Intent(applicationContext, SubActivity::class.java)
+                startActivity(intent)
+            }
+        })
+
+        binding.kioskmainBtn2.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(view: View?) {
+                val intent = Intent(applicationContext, SubActivity::class.java)
                 startActivity(intent)
             }
         })

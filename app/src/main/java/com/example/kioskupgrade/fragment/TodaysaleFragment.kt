@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kioskupgrade.DTO.Sale
+import com.example.kioskupgrade.R
 import com.example.kioskupgrade.adapter.AccountAdapter
 import com.example.kioskupgrade.databinding.FragmentTodaysaleBinding
 import com.google.firebase.database.DataSnapshot
@@ -39,10 +40,18 @@ class TodaysaleFragment: Fragment() {
 
                 for (item in snapshot.children) {
                     val key = item.key
-                    val data = item.getValue(Sale::class.java)
+                    var data = Sale()
+                    for (sub in item.children) {
+                        when(sub.key) {
+                            "img" -> data.setImg(R.drawable.burger)
+                            "name" -> data.setName(sub.value.toString())
+                            "num" -> data.setNum(sub.value.toString().toInt())
+                            "account" -> data.setAccount(sub.value.toString().toInt())
+                        }
+                    }
+
                     if (data != null) {
                         dataSet.add(data)
-                        Log.d("DB",dataSet.size.toString())
                     }
                 }
             }

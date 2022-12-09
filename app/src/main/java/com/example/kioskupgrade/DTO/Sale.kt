@@ -2,13 +2,13 @@ package com.example.kioskupgrade.DTO
 
 class Sale {
     var name: String = ""
-    var img: String = ""
+    var img: Int = 0
     var num: Int = 0
     var account: Int = 0
 
     constructor()
 
-    constructor(name:String, img:String, num:Int, account:Int) {
+    constructor(name:String, img:Int, num:Int, account:Int) {
         this.name = name
         this.img = img
         this.num = num
@@ -26,12 +26,12 @@ class Sale {
     }
 
     @JvmName("getImg1")
-    fun getImg(): String {
+    fun getImg(): Int {
         return this.img
     }
 
     @JvmName("setImg1")
-    fun setImg(img: String) {
+    fun setImg(img: Int) {
         this.img = img
     }
 

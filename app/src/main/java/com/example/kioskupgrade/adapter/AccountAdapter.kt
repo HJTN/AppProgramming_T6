@@ -21,13 +21,8 @@ class AccountAdapter(val dataSet: MutableList<Sale>): RecyclerView.Adapter<Recyc
         Log.d("RecyclerView", "onBindViewHolder(): $position")
         val binding = (holder as AccountViewHolder).binding
 
-//        Glide.with(binding.root)
-//            .load(dataSet[position].img)
-//            .placeholder(R.drawable.hamburger)
-//            .error(R.drawable.hamburger)
-//            .fallback(R.drawable.hamburger)
-//            .centerInside()
-//            .into(binding.itemImg)
+        Log.d("Data Check",dataSet[position].toString())
+        binding.itemImg.setImageResource(dataSet[position].img)
         binding.itemName.text = dataSet[position].name
         binding.itemNum.text = "x ${dataSet[position].num}"
         binding.itemAccount.text = dataSet[position].account.toString()

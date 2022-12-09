@@ -1,7 +1,6 @@
 package com.example.kioskupgrade.fragment
 
 import android.os.Bundle
-import android.provider.ContactsContract.Data
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
