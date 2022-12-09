@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@drawable/red"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="260dp"
+        android:layout_height="230dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/logo" />
+
+    <Button
+        android:id="@+id/kioskmainBtn"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/round_btn"
+        android:text="주문하기"
+        android:fontFamily="@font/fff"
+        android:textColor="@color/white"
+        android:textSize="35dp" />
+
+    <Button
+        android:id="@+id/kioskmainBtn2"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_btn"
+        android:fontFamily="@font/fff"
+        android:text="도움 받으며 주문하기"
+        android:textColor="@color/white"
+        android:textSize="35dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/stockBtn"
+            android:layout_width="@dimen/size120"
+            android:layout_height="@dimen/size120"
+            android:layout_margin = "10dp"
+            android:background="@drawable/adminmenu"
+            android:text="재고 확인"
+            android:textColor="@color/white"
+            android:textSize="@dimen/size20"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/accountBtn"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_margin = "10dp"
+            android:background="@drawable/adminmenu"
+            android:text="일일 결산"
+            android:textColor="@color/white"
+            android:textSize="@dimen/size20"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>
