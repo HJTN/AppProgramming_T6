@@ -34,41 +34,17 @@ class AccountmainFragment: Fragment() {
         binding = FragmentAccountmainBinding.inflate(inflater, container, false)
 
         // Data 가져오기
-        database = Firebase.database.reference.child(root)
-        database.addValueEventListener(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (dataSet.size > 0)
-                    dataSet.clear()
+        dataSet.add(Sale("빅맥",R.drawable.burger9,34,4600))
+        dataSet.add(Sale("코카 콜라",R.drawable.beverage3,45,1800))
+        dataSet.add(Sale("환타",R.drawable.beverage6,23,1800))
+        dataSet.add(Sale("더블 불고기 버거",R.drawable.burger10,55,4400))
 
-                for (item in snapshot.children) {
-                    val key = item.key
-                    var data = Sale()
-                    for (sub in item.children) {
-                        when(sub.key) {
-                            "img" -> data.setImg(R.drawable.burger)
-                            "name" -> data.setName(sub.value.toString())
-                            "num" -> data.setNum(sub.value.toString().toInt())
-                            "account" -> data.setAccount(sub.value.toString().toInt())
-                        }
-                    }
-//                    val data = item.getValue(Sale::class.java)
-                    if (data != null) {
-                        dataSet.add(data)
-                    }
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.d("Error",error.message)
-            }
-        })
-
-        // 필요한 값 계산
+        // 필요한 값 계산 및 Setting
         var popular = getPopular(dataSet)
         var totalAccount = getTotalAccount(dataSet)
-
-
+        binding.todayBestMenuIcon.setImageResource(popular.img)
         binding.todayTotalAccount.text = "$totalAccount 원"
+
         // Todo
         binding.singleMenu.setOnClickListener {
             Toast.makeText(binding.root.context, "단품!", Toast.LENGTH_SHORT).show()

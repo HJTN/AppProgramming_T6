@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kioskupgrade.Item
 import com.example.kioskupgrade.R
 import com.example.kioskupgrade.adapter.MenuAdapter
@@ -29,7 +27,7 @@ class RecommendOrderFragment: Fragment() {
 
         for (i in 1..10) {
             var price:String = "${(i*1000).toString()} 원"
-            dataSet.add(Item("세트메뉴 $i",price, R.drawable.hamburger))
+            dataSet.add(Item("세트메뉴 $i",price, R.drawable.hamburgericon))
         }
 
         val layoutManager = GridLayoutManager(binding.root.context, 3,

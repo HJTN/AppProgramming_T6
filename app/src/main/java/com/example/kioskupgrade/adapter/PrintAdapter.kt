@@ -5,23 +5,20 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.kioskupgrade.DTO.Sale
-import com.example.kioskupgrade.R
-import com.example.kioskupgrade.databinding.AccountItemBinding
+import com.example.kioskupgrade.databinding.PrintItemBinding
 
-class AccountViewHolder(val binding: AccountItemBinding): RecyclerView.ViewHolder(binding.root)
+class PrintViewHolder(val binding: PrintItemBinding): RecyclerView.ViewHolder(binding.root)
 
-class AccountAdapter(val dataSet: MutableList<Sale>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class PrintAdapter(val dataSet: MutableList<Sale>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return AccountViewHolder(AccountItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return PrintViewHolder(PrintItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         Log.d("RecyclerView", "onBindViewHolder(): $position")
-        val binding = (holder as AccountViewHolder).binding
+        val binding = (holder as PrintViewHolder).binding
 
-        binding.itemImg.setImageResource(dataSet[position].img)
         binding.itemName.text = dataSet[position].name
         binding.itemNum.text = "x ${dataSet[position].num}"
         binding.itemAccount.text = dataSet[position].account.toString()

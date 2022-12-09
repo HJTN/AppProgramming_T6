@@ -1,26 +1,18 @@
 package com.example.kioskupgrade.adapter
 
 import android.app.AlertDialog
-import android.content.Context
 import android.content.DialogInterface
-import android.graphics.BitmapFactory
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.kioskupgrade.DTO.Material
 import com.example.kioskupgrade.R
 import com.example.kioskupgrade.databinding.StockEditBinding
 import com.example.kioskupgrade.databinding.StockItemBinding
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import java.net.HttpURLConnection
-import java.net.URL
-import java.util.Objects
 
 class StockViewHolder(val binding: StockItemBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -39,9 +31,9 @@ class StockAdapter(val root: String, val dataSet: MutableList<Material>): Recycl
 
         Glide.with(binding.root)
             .load(dataSet[position].img)
-            .placeholder(R.drawable.hamburger)
-            .error(R.drawable.hamburger)
-            .fallback(R.drawable.hamburger)
+            .placeholder(R.drawable.hamburgericon)
+            .error(R.drawable.hamburgericon)
+            .fallback(R.drawable.hamburgericon)
             .centerInside()
             .into(binding.itemImg)
         binding.itemName.text = dataSet[position].name
@@ -50,9 +42,9 @@ class StockAdapter(val root: String, val dataSet: MutableList<Material>): Recycl
         binding.itemEdit.setOnClickListener {
             Glide.with(dialogBinding.root)
                 .load(dataSet[position].img)
-                .placeholder(R.drawable.hamburger)
-                .error(R.drawable.hamburger)
-                .fallback(R.drawable.hamburger)
+                .placeholder(R.drawable.hamburgericon)
+                .error(R.drawable.hamburgericon)
+                .fallback(R.drawable.hamburgericon)
                 .centerInside()
                 .into(dialogBinding.materImg)
             dialogBinding.materName.text = dataSet[position].name

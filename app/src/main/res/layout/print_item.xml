@@ -9,16 +9,6 @@
     android:background="@drawable/item_background"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:id="@+id/itemImg"
-        android:layout_width="@dimen/size40"
-        android:layout_height="@dimen/size40"
-        android:src="@drawable/hamburgericon"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/itemName" />
-
     <TextView
         android:id="@+id/itemName"
         android:layout_width="wrap_content"
@@ -29,7 +19,7 @@
         android:layout_marginStart="@dimen/size10"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/itemImg" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/itemNum"

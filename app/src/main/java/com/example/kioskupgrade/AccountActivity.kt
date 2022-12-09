@@ -19,9 +19,6 @@ class AccountActivity : AppCompatActivity() {
         val binding = ActivityAccountBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.bottomBar1.visibility = View.GONE
-        binding.bottomBar2.visibility = View.GONE
-
         val tabLayout = binding.tabs
 
         val tab1: TabLayout.Tab = tabLayout.newTab()
@@ -50,32 +47,10 @@ class AccountActivity : AppCompatActivity() {
                 val transaction = supportFragmentManager.beginTransaction()
 
                 when(tab?.text) {
-                    "메인" -> {
-                        transaction.replace(binding.tabContent.id, AccountmainFragment())
-                        binding.bottomBar1.visibility = View.GONE
-                        binding.bottomBar2.visibility = View.GONE
-                    }
-                    "1일 판매량" -> {
-                        transaction.replace(binding.tabContent.id, TodaysaleFragment())
-                        binding.bottomBar1.visibility = View.VISIBLE
-                        binding.bottomBar2.visibility = View.VISIBLE
-                        binding.infoTitle.text = "총 판매량"
-                        binding.infoContent.text = "xx 개"
-                    }
-                    "2주 판매량" -> {
-                        transaction.replace(binding.tabContent.id, TwoweeksaleFragment())
-                        binding.bottomBar1.visibility = View.VISIBLE
-                        binding.bottomBar2.visibility = View.VISIBLE
-                        binding.infoTitle.text = "총 판매량"
-                        binding.infoContent.text = "xx 개"
-                    }
-                    "1달 판매량" -> {
-                        transaction.replace(binding.tabContent.id, OnemonthsaleFragment())
-                        binding.bottomBar1.visibility = View.VISIBLE
-                        binding.bottomBar2.visibility = View.VISIBLE
-                        binding.infoTitle.text = "총 판매 금액"
-                        binding.infoContent.text = "xx,xxx,xxx 원"
-                    }
+                    "메인" -> transaction.replace(binding.tabContent.id, AccountmainFragment())
+                    "1일 판매량" -> transaction.replace(binding.tabContent.id, TodaysaleFragment())
+                    "2주 판매량" -> transaction.replace(binding.tabContent.id, TwoweeksaleFragment())
+                    "1달 판매량" -> transaction.replace(binding.tabContent.id, OnemonthsaleFragment())
                 }
                 transaction.commit()
             }
