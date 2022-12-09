@@ -1,6 +1,7 @@
 package com.example.kioskupgrade.fragment
 
 import android.os.Bundle
+import android.provider.ContactsContract.Data
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kioskupgrade.DTO.Material
+import com.example.kioskupgrade.R
 import com.example.kioskupgrade.adapter.StockAdapter
 import com.example.kioskupgrade.databinding.FragmentStockmainBinding
 import com.google.firebase.database.DataSnapshot
@@ -34,14 +36,11 @@ class StockmainFragment: Fragment() {
         database = Firebase.database.reference.child(root)
         database.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (dataSet.size > 0)
-                    dataSet.clear()
-
                 for (item in snapshot.children) {
                     val key = item.key
                     val data = item.getValue(Material::class.java)
+
                     if (data != null) {
-//                        Log.d("DB",data.img_path)
                         dataSet.add(data)
                     }
                 }
@@ -51,8 +50,6 @@ class StockmainFragment: Fragment() {
                 Log.d("Error",error.message)
             }
         })
-
-        Log.d("Data",dataSet.toString())
         binding.recyclerView.layoutManager = LinearLayoutManager(binding.root.context)
 
         binding.recyclerView.adapter = StockAdapter(root, dataSet)

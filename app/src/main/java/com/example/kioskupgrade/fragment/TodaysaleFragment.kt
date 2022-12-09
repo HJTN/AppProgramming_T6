@@ -34,11 +34,15 @@ class TodaysaleFragment: Fragment() {
         database = Firebase.database.reference.child(root)
         database.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                if (dataSet.size > 0)
+                    dataSet.clear()
+
                 for (item in snapshot.children) {
                     val key = item.key
                     val data = item.getValue(Sale::class.java)
                     if (data != null) {
                         dataSet.add(data)
+                        Log.d("DB",dataSet.size.toString())
                     }
                 }
             }

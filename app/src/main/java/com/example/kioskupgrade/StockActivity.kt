@@ -31,7 +31,7 @@ class StockActivity : AppCompatActivity() {
         val tabLayout = asBinding.tabs
 
         val tab1: TabLayout.Tab = tabLayout.newTab()
-        tab1.text = "전체"
+        tab1.text = "식재료"
         tabLayout.addTab(tab1)
 
         val tab2: TabLayout.Tab = tabLayout.newTab()
@@ -56,7 +56,7 @@ class StockActivity : AppCompatActivity() {
                 val transaction = supportFragmentManager.beginTransaction()
 
                 when(tab?.text) {
-                    "전체" -> transaction.replace(asBinding.tabContent.id, StockmainFragment())
+                    "식재료" -> transaction.replace(asBinding.tabContent.id, StockmainFragment())
                     "버거" -> transaction.replace(asBinding.tabContent.id, HamburgerFragment())
                     "음료" -> transaction.replace(asBinding.tabContent.id, BeverageFragment())
                     "사이드 메뉴" -> transaction.replace(asBinding.tabContent.id, SidemenuFragment())

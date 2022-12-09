@@ -8,10 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kioskupgrade.DTO.Material
 import com.example.kioskupgrade.DTO.Sale
 import com.example.kioskupgrade.adapter.AccountAdapter
-import com.example.kioskupgrade.adapter.StockAdapter
 import com.example.kioskupgrade.databinding.*
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,22 +18,25 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
-class CumulatesaleFragment: Fragment() {
-    lateinit var binding : FragmentCumulatesaleBinding
+class OnemonthsaleFragment: Fragment() {
+    lateinit var binding : FragmentOnemonthsaleBinding
     lateinit var database : DatabaseReference
     var dataSet = mutableListOf<Sale>()
-    var root = ""
+    var root = "Account_DB/Total"
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentCumulatesaleBinding.inflate(inflater, container, false)
+        binding = FragmentOnemonthsaleBinding.inflate(inflater, container, false)
 
         database = Firebase.database.reference.child(root)
         database.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                if (dataSet.size > 0)
+                    dataSet.clear()
+
                 for (item in snapshot.children) {
                     val key = item.key
                     val data = item.getValue(Sale::class.java)

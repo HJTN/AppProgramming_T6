@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.kioskupgrade.DTO.Sale
+import com.example.kioskupgrade.R
 import com.example.kioskupgrade.databinding.AccountItemBinding
 
 class AccountViewHolder(val binding: AccountItemBinding): RecyclerView.ViewHolder(binding.root)
@@ -19,6 +21,13 @@ class AccountAdapter(val dataSet: MutableList<Sale>): RecyclerView.Adapter<Recyc
         Log.d("RecyclerView", "onBindViewHolder(): $position")
         val binding = (holder as AccountViewHolder).binding
 
+//        Glide.with(binding.root)
+//            .load(dataSet[position].img)
+//            .placeholder(R.drawable.hamburger)
+//            .error(R.drawable.hamburger)
+//            .fallback(R.drawable.hamburger)
+//            .centerInside()
+//            .into(binding.itemImg)
         binding.itemName.text = dataSet[position].name
         binding.itemNum.text = "x ${dataSet[position].num}"
         binding.itemAccount.text = dataSet[position].account.toString()
