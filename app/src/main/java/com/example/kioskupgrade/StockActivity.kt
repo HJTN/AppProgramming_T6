@@ -5,18 +5,21 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.example.kioskupgrade.DTO.Material
 import com.example.kioskupgrade.databinding.ActivityStockBinding
 import com.example.kioskupgrade.fragment.BeverageFragment
 import com.example.kioskupgrade.fragment.HamburgerFragment
 import com.example.kioskupgrade.fragment.StockmainFragment
 import com.example.kioskupgrade.fragment.SidemenuFragment
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.database.DatabaseReference
 
 //재고확인 화면 관리
-
 class StockActivity : AppCompatActivity() {
     lateinit var fragmentManager: FragmentManager
     lateinit var transaction: FragmentTransaction
+    lateinit var database: DatabaseReference
+    var dataSet = mutableListOf<Material>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +29,7 @@ class StockActivity : AppCompatActivity() {
         val tabLayout = binding.tabs
 
         val tab1: TabLayout.Tab = tabLayout.newTab()
-        tab1.text = "전체"
+        tab1.text = "식재료"
         tabLayout.addTab(tab1)
 
         val tab2: TabLayout.Tab = tabLayout.newTab()
@@ -51,7 +54,7 @@ class StockActivity : AppCompatActivity() {
                 val transaction = supportFragmentManager.beginTransaction()
 
                 when(tab?.text) {
-                    "전체" -> transaction.replace(binding.tabContent.id, StockmainFragment())
+                    "식재료" -> transaction.replace(binding.tabContent.id, StockmainFragment())
                     "버거" -> transaction.replace(binding.tabContent.id, HamburgerFragment())
                     "음료" -> transaction.replace(binding.tabContent.id, BeverageFragment())
                     "사이드 메뉴" -> transaction.replace(binding.tabContent.id, SidemenuFragment())
@@ -67,6 +70,5 @@ class StockActivity : AppCompatActivity() {
                 Log.d("TabButton", "onTabReselected...")
             }
         })
-
     }
 }

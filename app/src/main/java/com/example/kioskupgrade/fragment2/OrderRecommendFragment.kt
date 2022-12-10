@@ -27,10 +27,17 @@ class RecommendOrderFragment: Fragment() {
 
         val dataSet = mutableListOf<Item>()
 
-        for (i in 1..10) {
-            var price:String = "${(i*1000).toString()} 원"
-            dataSet.add(Item("세트메뉴 $i",price, R.drawable.hamburger))
-        }
+        dataSet.add(Item("불고기 버거 세트", "5400 원", R.drawable.setburger1))
+        dataSet.add(Item("치킨 버거 세트", "5400 원", R.drawable.setburger2))
+        dataSet.add(Item("새우 버거 세트", "5400 원", R.drawable.setburger3))
+        dataSet.add(Item("머쉬룸 버거 세트", "5300 원", R.drawable.setburger4))
+        dataSet.add(Item("에그버거 세트", "5200 원", R.drawable.setburger5))
+
+        dataSet.add(Item("후라이드 치킨\n세트", "16000 원", R.drawable.setchicken1))
+        dataSet.add(Item("양념 치킨 세트", "17000 원", R.drawable.setchicken2))
+        dataSet.add(Item("간장 치킨 세트", "17000 원", R.drawable.setchicken3))
+        dataSet.add(Item("파닭 세트", "19000 원", R.drawable.setchicken4))
+        dataSet.add(Item("어니언 스노우윙\n치킨 세트", "18000 원", R.drawable.setchicken5))
 
         val layoutManager = GridLayoutManager(binding.root.context, 3,
             GridLayoutManager.VERTICAL, false)

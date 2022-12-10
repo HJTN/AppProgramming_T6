@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.kioskupgrade">
 
+<<<<<<< HEAD
+=======
+    <uses-permission android:name="android.permission.INTERNET" />
+
+>>>>>>> 4bf609d03748472d4cbbfb06aed923f0b97d89d3
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -26,6 +31,10 @@
         <activity android:name=".paymentActivity"/>
         <activity android:name=".StockActivity"/>
         <activity android:name=".AccountActivity"/>
+<<<<<<< HEAD
+=======
+        <activity android:name=".FinishActivity"/>
+>>>>>>> 4bf609d03748472d4cbbfb06aed923f0b97d89d3
     </application>
 
 </manifest>

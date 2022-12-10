@@ -19,10 +19,13 @@ class AccountActivity : AppCompatActivity() {
         val binding = ActivityAccountBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.bottomBar1.visibility = View.GONE
+        binding.bottomBar2.visibility = View.GONE
+
         val tabLayout = binding.tabs
 
         val tab1: TabLayout.Tab = tabLayout.newTab()
-        tab1.text = "전체"
+        tab1.text = "메인"
         tabLayout.addTab(tab1)
 
         val tab2: TabLayout.Tab = tabLayout.newTab()
@@ -30,11 +33,11 @@ class AccountActivity : AppCompatActivity() {
         tabLayout.addTab(tab2)
 
         val tab3: TabLayout.Tab = tabLayout.newTab()
-        tab3.text = "누적 판매량"
+        tab3.text = "2주 판매량"
         tabLayout.addTab(tab3)
 
         val tab4: TabLayout.Tab = tabLayout.newTab()
-        tab4.text = "총 판매 금액"
+        tab4.text = "1달 판매량"
         tabLayout.addTab(tab4)
 
         fragmentManager = supportFragmentManager
@@ -47,27 +50,27 @@ class AccountActivity : AppCompatActivity() {
                 val transaction = supportFragmentManager.beginTransaction()
 
                 when(tab?.text) {
-                    "전체" -> {
+                    "메인" -> {
                         transaction.replace(binding.tabContent.id, AccountmainFragment())
                         binding.bottomBar1.visibility = View.GONE
                         binding.bottomBar2.visibility = View.GONE
                     }
                     "1일 판매량" -> {
-                        transaction.replace(binding.tabContent.id, OnedaysaleFragment())
+                        transaction.replace(binding.tabContent.id, TodaysaleFragment())
                         binding.bottomBar1.visibility = View.VISIBLE
                         binding.bottomBar2.visibility = View.VISIBLE
                         binding.infoTitle.text = "총 판매량"
                         binding.infoContent.text = "xx 개"
                     }
-                    "누적 판매량" -> {
-                        transaction.replace(binding.tabContent.id, CumulatesaleFragment())
+                    "2주 판매량" -> {
+                        transaction.replace(binding.tabContent.id, TwoweeksaleFragment())
                         binding.bottomBar1.visibility = View.VISIBLE
                         binding.bottomBar2.visibility = View.VISIBLE
                         binding.infoTitle.text = "총 판매량"
                         binding.infoContent.text = "xx 개"
                     }
-                    "총 판매 금액" -> {
-                        transaction.replace(binding.tabContent.id, TotalamountFragment())
+                    "1달 판매량" -> {
+                        transaction.replace(binding.tabContent.id, OnemonthsaleFragment())
                         binding.bottomBar1.visibility = View.VISIBLE
                         binding.bottomBar2.visibility = View.VISIBLE
                         binding.infoTitle.text = "총 판매 금액"

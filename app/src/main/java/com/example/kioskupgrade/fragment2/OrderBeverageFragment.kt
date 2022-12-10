@@ -5,19 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kioskupgrade.Item
+import com.example.kioskupgrade.MenuAdapter
 import com.example.kioskupgrade.R
-import com.example.kioskupgrade.adapter.MenuAdapter
-import com.example.kioskupgrade.adapter.StockAdapter
 import com.example.kioskupgrade.databinding.FragmentBeverageOrderBinding
 
 
 //주문화면의 음료 탭 제어
-
-class BeverageOrderFragment: Fragment() {
+class BeverageOrderFragment: Fragment(){
     lateinit var binding : FragmentBeverageOrderBinding
 
     override fun onCreateView(

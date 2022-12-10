@@ -1,34 +1,87 @@
 package com.example.kioskupgrade.adapter
 
+
+import android.app.AlertDialog
+import android.content.Context
+import android.content.DialogInterface
+import android.graphics.BitmapFactory
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.kioskupgrade.DTO.Material
+import com.example.kioskupgrade.R
+import com.example.kioskupgrade.databinding.StockEditBinding
 import com.example.kioskupgrade.databinding.StockItemBinding
-
-//관리자 모드로 들어갔을시 재고확인 화면의 리사이클러뷰를 위한 어댑터//
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import java.net.HttpURLConnection
+import java.net.URL
+import java.util.Objects
 
 class StockViewHolder(val binding: StockItemBinding): RecyclerView.ViewHolder(binding.root)
 
-class StockAdapter(val dataSet: MutableList<String>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class StockAdapter(val root: String, val dataSet: MutableList<Material>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    lateinit var inflater: LayoutInflater
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return StockViewHolder(StockItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        inflater = LayoutInflater.from(parent.context)
+        return StockViewHolder(StockItemBinding.inflate(inflater, parent, false))
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        Log.d("RecyclerView", "onBindViewHolder(): $position")
+//        Log.d("RecyclerView", "onBindViewHolder(): $position")
         val binding = (holder as StockViewHolder).binding
+        val dialogBinding = StockEditBinding.inflate(inflater)
 
-        binding.itemName.text = dataSet[position]
-        binding.itemNum.text = "x $position"
+        Glide.with(binding.root)
+            .load(dataSet[position].img)
+            .placeholder(R.drawable.hamburger)
+            .error(R.drawable.hamburger)
+            .fallback(R.drawable.hamburger)
+            .centerInside()
+            .into(binding.itemImg)
+        binding.itemName.text = dataSet[position].name
+        binding.itemNum.text = "x ${dataSet[position].num}"
 
-        binding.itemRoot.setOnClickListener {
-            Toast.makeText(binding.root.context, "${binding.itemName.text} Clicked", Toast.LENGTH_SHORT).show()
+        binding.itemEdit.setOnClickListener {
+            Glide.with(dialogBinding.root)
+                .load(dataSet[position].img)
+                .placeholder(R.drawable.hamburger)
+                .error(R.drawable.hamburger)
+                .fallback(R.drawable.hamburger)
+                .centerInside()
+                .into(dialogBinding.materImg)
+            dialogBinding.materName.text = dataSet[position].name
+
+            AlertDialog.Builder(binding.root.context).run {
+                setView(dialogBinding.root)
+                setPositiveButton("변경", DialogInterface.OnClickListener { dialogInterface, i ->
+                    val editedNum = dialogBinding.materNumEdit.text.toString().toInt()
+
+                    binding.itemNum.text = "x $editedNum"
+
+                    var updateData = mutableMapOf<String, Any>()
+                    updateData.put("num", editedNum)
+                    Firebase.database.reference.child("$root/${position+1}").updateChildren(updateData)
+
+                    Toast.makeText(binding.root.context, "${binding.itemName.text} x ${editedNum}", Toast.LENGTH_SHORT).show()
+                })
+                setNegativeButton("취소", null)
+                show()
+            }
         }
     }
 
     override fun getItemCount(): Int {
         return dataSet.size
+    }
+
+    fun getItems(): MutableList<Material> {
+        return dataSet
     }
 }

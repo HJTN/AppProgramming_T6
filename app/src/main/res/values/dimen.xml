@@ -12,6 +12,10 @@
     <dimen name="size80">80dp</dimen>
     <dimen name="size100">100dp</dimen>
     <dimen name="size120">120dp</dimen>
+<<<<<<< HEAD
+=======
+    <dimen name="size160">160dp</dimen>
+>>>>>>> 4bf609d03748472d4cbbfb06aed923f0b97d89d3
 
     <dimen name="fsize16">16sp</dimen>
     <dimen name="fsize24">24sp</dimen>

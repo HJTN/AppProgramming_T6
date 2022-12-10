@@ -1,13 +1,19 @@
 package com.example.kioskupgrade
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.RecyclerView
 import com.example.kioskupgrade.databinding.ActivityOrderBinding
+import com.example.kioskupgrade.databinding.MenuItemBinding
 import com.example.kioskupgrade.fragment.BeverageOrderFragment
 import com.example.kioskupgrade.fragment.HamburgerOrderFragment
 import com.example.kioskupgrade.fragment.SidemenuOrderFragment
@@ -15,10 +21,15 @@ import com.example.teamprogect.fragment.RecommendOrderFragment
 import com.google.android.material.tabs.TabLayout
 
 //주문 화면 관리
+var items = ArrayList<String>()
+var adapter: ArrayAdapter<String>? = null
+var totalPrice : Int = 0
+lateinit var priceText: TextView
 
 class SubActivity : AppCompatActivity() {
     lateinit var fragmentManager: FragmentManager
     lateinit var transaction: FragmentTransaction
+    var listView: ListView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,17 +81,34 @@ class SubActivity : AppCompatActivity() {
             }
         })
 
+        items.clear()
+        totalPrice = 0
 
+        priceText = findViewById(R.id.sum)
+
+        // 어댑터 생성
+        adapter = ArrayAdapter<String>(
+            this@SubActivity,
+            android.R.layout.simple_list_item_1, items!!
+        )
+
+        // 어댑터 설정
+        listView = findViewById(R.id.listView) as ListView?
+        listView!!.adapter = adapter
 
         val next1Button: Button = findViewById(R.id.purchase)
         next1Button.setOnClickListener {
             val intent = Intent(applicationContext, paymentActivity::class.java)
+
+            // 다음액티비티인 payment activity에 어레이리스트 전달
+            intent.putStringArrayListExtra("data",items)
+            intent.putExtra("price",totalPrice.toString())
             startActivity(intent)
         }
         val next2Button: Button = findViewById(R.id.redo)
-        next2Button.setOnClickListener{popupbtnlistener()}
-
-
+        next2Button.setOnClickListener{
+            popupbtnlistener()
+        }
     }
     fun popupbtnlistener(){
         val customdialog = CustomDialog(this)
@@ -90,3 +118,32 @@ class SubActivity : AppCompatActivity() {
 
 }
 
+class MenuViewHolder(val binding: MenuItemBinding): RecyclerView.ViewHolder(binding.root)
+
+class MenuAdapter(val dataSet: MutableList<Item>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return MenuViewHolder(MenuItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    }
+
+    @SuppressLint("SetTextI18n")
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        Log.d("RecyclerView", "onBindViewHolder(): $position")
+        val binding = (holder as MenuViewHolder).binding
+
+        binding.itemName.text = dataSet[position].name
+        binding.itemPrice.text = dataSet[position].price
+        binding.itemImg.setImageResource(dataSet[position].img)
+
+        binding.itemButton.setOnClickListener(View.OnClickListener {
+            items.add(binding.itemName.text.toString())
+            adapter?.notifyDataSetChanged();
+            totalPrice = totalPrice + (binding.itemPrice.text as String).split(" ")[0].toInt()
+            priceText.text = "가격: $totalPrice 원"
+            Toast.makeText(binding.root.context, "${binding.itemName.text} Clicked", Toast.LENGTH_SHORT).show()
+        })
+    }
+
+    override fun getItemCount(): Int {
+        return dataSet.size
+    }
+}
