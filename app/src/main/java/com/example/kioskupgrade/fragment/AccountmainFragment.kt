@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kioskupgrade.DTO.Material
 import com.example.kioskupgrade.DTO.Sale
 import com.example.kioskupgrade.R
 import com.example.kioskupgrade.`interface`.CalcInterface
@@ -25,7 +26,7 @@ class AccountmainFragment: Fragment() {
     lateinit var binding : FragmentAccountmainBinding
     lateinit var database : DatabaseReference
     var dataSet = mutableListOf<Sale>()
-    var root = "Account_DB/Main"
+    var root = "Stock_DB"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,19 +37,18 @@ class AccountmainFragment: Fragment() {
 
         // Data 가져오기
         // 단품
-        dataSet.add(Sale("빅맥",R.drawable.burger9,34,4600))
-        dataSet.add(Sale("코카 콜라",R.drawable.beverage3,45,1800))
-        dataSet.add(Sale("환타",R.drawable.beverage6,23,1800))
-        dataSet.add(Sale("더블 불고기 버거",R.drawable.burger10,55,4400))
-        dataSet.add(Sale("맥치킨",R.drawable.burger6,38,3300))
-        dataSet.add(Sale("골든 모짜렐라 치즈스틱",R.drawable.sidemenu8,75,4000))
+        dataSet.add(Sale(root+"/Single/Burger/BigMac","빅맥", R.drawable.bigmacburger,15,4600))
+        dataSet.add(Sale(root+"/Single/Burger/QuarterPounderCheese","쿼터파운더 치즈", R.drawable.quarterpoundercheeseburger,15,5200))
+        dataSet.add(Sale(root+"/Single/Beverage/CocaCola","코카 콜라", R.drawable.cocacola,15,1800))
+        dataSet.add(Sale(root+"/Single/Beverage/Fanta","환타", R.drawable.fanta,15,1800))
+        dataSet.add(Sale(root+"/Single/SideMenu/FrenchFries","후렌치 후라이", R.drawable.frenchfries,15,1700))
+        dataSet.add(Sale(root+"/Single/SideMenu/McNuggets","맥너겟", R.drawable.mcnuggets,15,1800))
+        dataSet.add(Sale(root+"/Single/SideMenu/GoldenMozzarellaCheeseSticks","골든 모짜렐라 치즈 스틱", R.drawable.goldenmozzarellacheesesticks,15,2200))
         // 세트
-        dataSet.add(Sale("더블 비프 미트칠리 버거 세트",R.drawable.burgerset2,106,8200))
-        dataSet.add(Sale("빅맥 세트",R.drawable.burgerset1,160,5900))
-        dataSet.add(Sale("더블 쿼터파운더 치즈 세트",R.drawable.burgerset3,68,8400))
-        dataSet.add(Sale("더블 불고기 버거 세트",R.drawable.burgerset4,130,5500))
-        dataSet.add(Sale("불고기 버거 세트",R.drawable.burgerset5,110,4300))
-        dataSet.add(Sale("베이컨 토마토 디럭스 세트",R.drawable.burgerset6,120,7400))
+        dataSet.add(Sale(root+"/Set/BigMac","빅맥 세트", R.drawable.bigmacburgerset,15,5900))
+        dataSet.add(Sale(root+"/Set/QuarterPounderCheese","쿼터파운더 치즈 세트", R.drawable.quarterpoundercheeseburgerset,15,6700))
+        dataSet.add(Sale(root+"/Set/DoubleBeefMeetChiliBurger","더블 비프 미트칠리 버거 세트", R.drawable.doublebeefmeetchiliburgerset,15,9500))
+        dataSet.add(Sale(root+"/Set/DoubleBulgogiBurger","더블 불고기 버거 세트", R.drawable.doublebulgogiburgerset,15,5500))
 
         // 필요한 값 계산 및 Setting
         binding.todayBestMenuIcon.setImageResource(CalcInterface(dataSet).getPopular().img)
@@ -57,23 +57,22 @@ class AccountmainFragment: Fragment() {
         // 단품 판매 목록
         binding.singleMenu.setOnClickListener {
             dataSet.clear()
-            dataSet.add(Sale("빅맥",R.drawable.burger9,34,4600))
-            dataSet.add(Sale("코카 콜라",R.drawable.beverage3,45,1800))
-            dataSet.add(Sale("환타",R.drawable.beverage6,23,1800))
-            dataSet.add(Sale("더블 불고기 버거",R.drawable.burger10,55,4400))
-            dataSet.add(Sale("맥치킨",R.drawable.burger6,38,3300))
-            dataSet.add(Sale("골든 모짜렐라 치즈스틱",R.drawable.sidemenu8,75,4000))
+            dataSet.add(Sale(root+"/Single/Burger/BigMac","빅맥", R.drawable.bigmacburger,15,4600))
+            dataSet.add(Sale(root+"/Single/Burger/QuarterPounderCheese","쿼터파운더 치즈", R.drawable.quarterpoundercheeseburger,15,5200))
+            dataSet.add(Sale(root+"/Single/Beverage/CocaCola","코카 콜라", R.drawable.cocacola,15,1800))
+            dataSet.add(Sale(root+"/Single/Beverage/Fanta","환타", R.drawable.fanta,15,1800))
+            dataSet.add(Sale(root+"/Single/SideMenu/FrenchFries","후렌치 후라이", R.drawable.frenchfries,15,1700))
+            dataSet.add(Sale(root+"/Single/SideMenu/McNuggets","맥너겟", R.drawable.mcnuggets,15,1800))
+            dataSet.add(Sale(root+"/Single/SideMenu/GoldenMozzarellaCheeseSticks","골든 모짜렐라 치즈 스틱", R.drawable.goldenmozzarellacheesesticks,15,2200))
             (binding.recyclerView.adapter as AccountAdapter).notifyDataSetChanged()
         }
         // 세트 판매 목록
         binding.setMenu.setOnClickListener {
             dataSet.clear()
-            dataSet.add(Sale("더블 비프 미트칠리 버거 세트",R.drawable.burgerset2,106,8200))
-            dataSet.add(Sale("빅맥 세트",R.drawable.burgerset1,160,5900))
-            dataSet.add(Sale("더블 쿼터파운더 치즈 세트",R.drawable.burgerset3,68,8400))
-            dataSet.add(Sale("더블 불고기 버거 세트",R.drawable.burgerset4,130,5500))
-            dataSet.add(Sale("불고기 버거 세트",R.drawable.burgerset5,110,4300))
-            dataSet.add(Sale("베이컨 토마토 디럭스 세트",R.drawable.burgerset6,120,7400))
+            dataSet.add(Sale(root+"/Set/BigMac","빅맥 세트", R.drawable.bigmacburgerset,15,5900))
+            dataSet.add(Sale(root+"/Set/QuarterPounderCheese","쿼터파운더 치즈 세트", R.drawable.quarterpoundercheeseburgerset,15,6700))
+            dataSet.add(Sale(root+"/Set/DoubleBeefMeetChiliBurger","더블 비프 미트칠리 버거 세트", R.drawable.doublebeefmeetchiliburgerset,15,9500))
+            dataSet.add(Sale(root+"/Set/DoubleBulgogiBurger","더블 불고기 버거 세트", R.drawable.doublebulgogiburgerset,15,5500))
             (binding.recyclerView.adapter as AccountAdapter).notifyDataSetChanged()
         }
 

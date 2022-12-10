@@ -22,7 +22,7 @@ class TodaysaleFragment: Fragment() {
     lateinit var binding : FragmentTodaysaleBinding
     lateinit var database : DatabaseReference
     var dataSet = mutableListOf<Sale>()
-    var root = "Account_DB/Today"
+    var root = "Stock_DB"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,15 +33,18 @@ class TodaysaleFragment: Fragment() {
 
         // Data 가져오기
         // 단품
-        dataSet.add(Sale("더블 불고기 버거",R.drawable.burger10,56,4400))
-        dataSet.add(Sale("빅맥",R.drawable.burger9,87,4600))
-        dataSet.add(Sale("맥치킨",R.drawable.burger6,38,3300))
-        dataSet.add(Sale("골든 모짜렐라 치즈스틱",R.drawable.sidemenu8,75,4000))
+        dataSet.add(Sale(root+"/Single/Burger/BigMac","빅맥", R.drawable.bigmacburger,30,4600))
+        dataSet.add(Sale(root+"/Single/Burger/QuarterPounderCheese","쿼터파운더 치즈", R.drawable.quarterpoundercheeseburger,30,5200))
+        dataSet.add(Sale(root+"/Single/Beverage/CocaCola","코카 콜라", R.drawable.cocacola,30,1800))
+        dataSet.add(Sale(root+"/Single/Beverage/Fanta","환타", R.drawable.fanta,30,1800))
+        dataSet.add(Sale(root+"/Single/SideMenu/FrenchFries","후렌치 후라이", R.drawable.frenchfries,30,1700))
+        dataSet.add(Sale(root+"/Single/SideMenu/McNuggets","맥너겟", R.drawable.mcnuggets,30,1800))
+        dataSet.add(Sale(root+"/Single/SideMenu/GoldenMozzarellaCheeseSticks","골든 모짜렐라 치즈 스틱", R.drawable.goldenmozzarellacheesesticks,30,2200))
         // 세트
-        dataSet.add(Sale("더블 비프 미트칠리 버거 세트",R.drawable.burgerset2,40,8200))
-        dataSet.add(Sale("빅맥 세트",R.drawable.burgerset1,60,5900))
-        dataSet.add(Sale("더블 쿼터파운더 치즈 세트",R.drawable.burgerset3,50,8400))
-        dataSet.add(Sale("더블 불고기 버거 세트",R.drawable.burgerset4,70,5500))
+        dataSet.add(Sale(root+"/Set/BigMac","빅맥 세트", R.drawable.bigmacburgerset,30,5900))
+        dataSet.add(Sale(root+"/Set/QuarterPounderCheese","쿼터파운더 치즈 세트", R.drawable.quarterpoundercheeseburgerset,30,6700))
+        dataSet.add(Sale(root+"/Set/DoubleBeefMeetChiliBurger","더블 비프 미트칠리 버거 세트", R.drawable.doublebeefmeetchiliburgerset,30,9500))
+        dataSet.add(Sale(root+"/Set/DoubleBulgogiBurger","더블 불고기 버거 세트", R.drawable.doublebulgogiburgerset,30,5500))
 
         // 하단바 텍스트 설정
         binding.infoTitle.text = "총 판매량"
@@ -50,10 +53,13 @@ class TodaysaleFragment: Fragment() {
         // 단품 판매 목록
         binding.singleMenu.setOnClickListener {
             dataSet.clear()
-            dataSet.add(Sale("더블 불고기 버거",R.drawable.burger10,56,4400))
-            dataSet.add(Sale("빅맥",R.drawable.burger9,87,4600))
-            dataSet.add(Sale("맥치킨",R.drawable.burger6,38,3300))
-            dataSet.add(Sale("골든 모짜렐라 치즈스틱",R.drawable.sidemenu8,75,4000))
+            dataSet.add(Sale(root+"/Single/Burger/BigMac","빅맥", R.drawable.bigmacburger,30,4600))
+            dataSet.add(Sale(root+"/Single/Burger/QuarterPounderCheese","쿼터파운더 치즈", R.drawable.quarterpoundercheeseburger,30,5200))
+            dataSet.add(Sale(root+"/Single/Beverage/CocaCola","코카 콜라", R.drawable.cocacola,30,1800))
+            dataSet.add(Sale(root+"/Single/Beverage/Fanta","환타", R.drawable.fanta,30,1800))
+            dataSet.add(Sale(root+"/Single/SideMenu/FrenchFries","후렌치 후라이", R.drawable.frenchfries,30,1700))
+            dataSet.add(Sale(root+"/Single/SideMenu/McNuggets","맥너겟", R.drawable.mcnuggets,30,1800))
+            dataSet.add(Sale(root+"/Single/SideMenu/GoldenMozzarellaCheeseSticks","골든 모짜렐라 치즈 스틱", R.drawable.goldenmozzarellacheesesticks,15,2200))
             (binding.recyclerView.adapter as AccountAdapter).notifyDataSetChanged()
 
             // 하단바 텍스트 설정
@@ -62,10 +68,10 @@ class TodaysaleFragment: Fragment() {
         // 세트 판매 목록
         binding.setMenu.setOnClickListener {
             dataSet.clear()
-            dataSet.add(Sale("더블 비프 미트칠리 버거 세트",R.drawable.burgerset2,40,8200))
-            dataSet.add(Sale("빅맥 세트",R.drawable.burgerset1,60,5900))
-            dataSet.add(Sale("더블 쿼터파운더 치즈 세트",R.drawable.burgerset3,50,8400))
-            dataSet.add(Sale("더블 불고기 버거 세트",R.drawable.burgerset4,70,5500))
+            dataSet.add(Sale(root+"/Set/BigMac","빅맥 세트", R.drawable.bigmacburgerset,30,5900))
+            dataSet.add(Sale(root+"/Set/QuarterPounderCheese","쿼터파운더 치즈 세트", R.drawable.quarterpoundercheeseburgerset,30,6700))
+            dataSet.add(Sale(root+"/Set/DoubleBeefMeetChiliBurger","더블 비프 미트칠리 버거 세트", R.drawable.doublebeefmeetchiliburgerset,30,9500))
+            dataSet.add(Sale(root+"/Set/DoubleBulgogiBurger","더블 불고기 버거 세트", R.drawable.doublebulgogiburgerset,30,5500))
             (binding.recyclerView.adapter as AccountAdapter).notifyDataSetChanged()
 
             // 하단바 텍스트 설정

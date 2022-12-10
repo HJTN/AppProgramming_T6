@@ -1,6 +1,7 @@
 package com.example.kioskupgrade.DTO
 
 class Sale {
+    var key: String = ""
     var name: String = ""
     var img: Int = 0
     var num: Int = 0
@@ -8,11 +9,22 @@ class Sale {
 
     constructor()
 
-    constructor(name:String, img:Int, num:Int, account:Int) {
+    constructor(key:String, name:String, img:Int, num:Int, account:Int) {
+        this.key = key
         this.name = name
         this.img = img
         this.num = num
         this.account = account
+    }
+
+    @JvmName("getKey1")
+    fun getKey(): String {
+        return this.key
+    }
+
+    @JvmName("setKey1")
+    fun setKey(key: String) {
+        this.key = key
     }
 
     @JvmName("getName1")
