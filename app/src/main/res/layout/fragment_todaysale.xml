@@ -82,7 +82,7 @@
             android:textSize="@dimen/fsize16"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:layout_marginEnd="@dimen/size80"
+            android:layout_marginEnd="@dimen/size60"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/infoContent"/>
