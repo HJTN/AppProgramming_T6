@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         binding.stockBtn.visibility = View.GONE
         binding.accountBtn.visibility = View.GONE
 
+
         binding.logo.setOnClickListener(object: View.OnClickListener{
             override fun onClick(p0: View?) {
                 clickNum++

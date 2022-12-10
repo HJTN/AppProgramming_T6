@@ -1,11 +1,7 @@
 package com.example.kioskupgrade.adapter
 
-
 import android.app.AlertDialog
-import android.content.Context
 import android.content.DialogInterface
-import android.graphics.BitmapFactory
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -16,12 +12,9 @@ import com.example.kioskupgrade.DTO.Material
 import com.example.kioskupgrade.R
 import com.example.kioskupgrade.databinding.StockEditBinding
 import com.example.kioskupgrade.databinding.StockItemBinding
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import java.net.HttpURLConnection
-import java.net.URL
-import java.util.Objects
+import java.text.DecimalFormat
 
 class StockViewHolder(val binding: StockItemBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -37,23 +30,24 @@ class StockAdapter(val root: String, val dataSet: MutableList<Material>): Recycl
 //        Log.d("RecyclerView", "onBindViewHolder(): $position")
         val binding = (holder as StockViewHolder).binding
         val dialogBinding = StockEditBinding.inflate(inflater)
+        val decimalFormat = DecimalFormat("#,###")
 
         Glide.with(binding.root)
             .load(dataSet[position].img)
-            .placeholder(R.drawable.hamburger)
-            .error(R.drawable.hamburger)
-            .fallback(R.drawable.hamburger)
+            .placeholder(R.drawable.hamburgericon)
+            .error(R.drawable.hamburgericon)
+            .fallback(R.drawable.hamburgericon)
             .centerInside()
             .into(binding.itemImg)
         binding.itemName.text = dataSet[position].name
-        binding.itemNum.text = "x ${dataSet[position].num}"
+        binding.itemNum.text = "x " + decimalFormat.format(dataSet[position].num)
 
         binding.itemEdit.setOnClickListener {
             Glide.with(dialogBinding.root)
                 .load(dataSet[position].img)
-                .placeholder(R.drawable.hamburger)
-                .error(R.drawable.hamburger)
-                .fallback(R.drawable.hamburger)
+                .placeholder(R.drawable.hamburgericon)
+                .error(R.drawable.hamburgericon)
+                .fallback(R.drawable.hamburgericon)
                 .centerInside()
                 .into(dialogBinding.materImg)
             dialogBinding.materName.text = dataSet[position].name
@@ -63,7 +57,7 @@ class StockAdapter(val root: String, val dataSet: MutableList<Material>): Recycl
                 setPositiveButton("변경", DialogInterface.OnClickListener { dialogInterface, i ->
                     val editedNum = dialogBinding.materNumEdit.text.toString().toInt()
 
-                    binding.itemNum.text = "x $editedNum"
+                    binding.itemNum.text = "x " + decimalFormat.format(editedNum)
 
                     var updateData = mutableMapOf<String, Any>()
                     updateData.put("num", editedNum)
