@@ -5,12 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kioskupgrade.Item
+import com.example.kioskupgrade.DTO.Item
+import com.example.kioskupgrade.MenuAdapter
 import com.example.kioskupgrade.R
-import com.example.kioskupgrade.adapter.MenuAdapter
 import com.example.kioskupgrade.databinding.FragmentHamburgerOrderBinding
 
 //주문화면의 햄버거, 치킨 탭 제어

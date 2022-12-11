@@ -1,4 +1,4 @@
-package com.example.kioskupgrade
+package com.example.kioskupgrade.DTO
 
 // item 데이터 저장 위한 클래스
 

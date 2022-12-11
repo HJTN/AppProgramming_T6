@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kioskupgrade.DTO.Item
 import com.example.kioskupgrade.databinding.ActivityOrderBinding
 import com.example.kioskupgrade.databinding.MenuItemBinding
 import com.example.kioskupgrade.fragment.BeverageOrderFragment

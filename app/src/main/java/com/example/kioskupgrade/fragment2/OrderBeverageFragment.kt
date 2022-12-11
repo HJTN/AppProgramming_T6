@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.kioskupgrade.Item
+import com.example.kioskupgrade.DTO.Item
 import com.example.kioskupgrade.MenuAdapter
 import com.example.kioskupgrade.R
 import com.example.kioskupgrade.databinding.FragmentBeverageOrderBinding
