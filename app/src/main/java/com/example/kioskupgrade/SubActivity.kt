@@ -109,15 +109,6 @@ class SubActivity : AppCompatActivity() {
             intent.putExtra("price", totalPrice)
             startActivity(intent)
         }
-
-        val next2Button: Button = findViewById(R.id.redo)
-        next2Button.setOnClickListener{
-            popupbtnlistener()
-        }
-    }
-    fun popupbtnlistener(){
-        val customdialog = CustomDialog(this)
-        customdialog.show()
     }
 
 }
