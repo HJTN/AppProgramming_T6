@@ -63,9 +63,9 @@
 
         <ListView
             android:id="@+id/listView"
-            android:layout_width="180sp"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:background="@color/white" />
 
         <LinearLayout
@@ -82,8 +82,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/fff"
-                android:text="가격: 00,000"
-                android:textSize="30sp" />
+                android:text="가격: 00,000 원"
+                android:textSize="25sp" />
 
             <Button
                 android:layout_marginTop="5sp"
