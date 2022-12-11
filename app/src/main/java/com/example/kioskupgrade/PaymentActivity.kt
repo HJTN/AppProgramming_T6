@@ -2,6 +2,7 @@ package com.example.kioskupgrade
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -115,8 +116,12 @@ class paymentActivity : AppCompatActivity() {
             builder.setView(dialoglayout)
             builder.show()
 
-            if(CrossActivityInfo.isTutorial)
+            if(CrossActivityInfo.isTutorial){
                 tutorial_renderer.MovePhase()
+
+                val mp = MediaPlayer.create(this, R.raw.choose_card)
+                mp.start()
+            }
         }
 
         binding.cash.setOnClickListener {
@@ -132,8 +137,12 @@ class paymentActivity : AppCompatActivity() {
             builder.setView(dialoglayout)
             builder.show()
 
-            if(CrossActivityInfo.isTutorial)
+            if(CrossActivityInfo.isTutorial){
                 tutorial_renderer.MovePhase()
+
+                val mp = MediaPlayer.create(this, R.raw.choose_cash)
+                mp.start()
+            }
         }
 
         binding.toss.setOnClickListener {
@@ -149,8 +158,12 @@ class paymentActivity : AppCompatActivity() {
             builder.setView(dialoglayout)
             builder.show()
 
-            if(CrossActivityInfo.isTutorial)
+            if(CrossActivityInfo.isTutorial){
                 tutorial_renderer.MovePhase()
+
+                val mp = MediaPlayer.create(this, R.raw.choose_toss)
+                mp.start()
+            }
         }
 
         binding.etc.setOnClickListener {
@@ -166,8 +179,12 @@ class paymentActivity : AppCompatActivity() {
             builder.setView(dialoglayout)
             builder.show()
 
-            if(CrossActivityInfo.isTutorial)
+            if(CrossActivityInfo.isTutorial){
                 tutorial_renderer.MovePhase()
+
+                val mp = MediaPlayer.create(this, R.raw.choose_etc)
+                mp.start()
+            }
         }
 
         if(CrossActivityInfo.isTutorial){
@@ -187,7 +204,7 @@ class paymentActivity : AppCompatActivity() {
 //        tutorial_renderer.SetText("",0.01f, 1.35f, 30f)
 //        tutorial_renderer.SetNextButton(0.1f, 2f)
 
-        tutorial_renderer.PassPhase_to(3)
+        tutorial_renderer.StartFrom_PaymentPhase()
         tutorial_renderer.StartTutorial()
     }
 }

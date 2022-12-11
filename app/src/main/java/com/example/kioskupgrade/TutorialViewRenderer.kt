@@ -1,32 +1,47 @@
 package com.example.kioskupgrade.com.example.kioskupgrade
 
 import android.content.Context
+import android.media.MediaPlayer
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.kioskupgrade.R
 
 //튜토리얼 화면 렌더링을 위한 클래스. 사용하는 쪽에서 application context와 4개의 반투명 ImageView를 넘겨주며 생성한다.
 class TutorialViewRenderer(val context: Context,
                            val panels : MutableList<ImageView>, val tv : TextView, val btn : Button) {
 
-    val params = arrayOf(arrayOf(0f, 0.06f, 1f, 0.13f,
+    lateinit var mp : MediaPlayer
+
+    val params = arrayOf(
+        arrayOf(0f, 0f, 0f, 0f,
+            "", 0.3f, 0.5f, 30f,
+            0.5f, 0.5f,
+            R.raw.intro),
+        arrayOf(0f, 0.06f, 1f, 0.13f,
         "종류를 선택해주세요", 0.3f, 0.5f, 30f,
-        0.6f, 0.7f),
+        0.6f, 0.7f,
+            R.raw.tab4),
         arrayOf(0f, 0.06f, 1f, 0.7f,
             "메뉴를 담아주세요",0.01f, 1.16f, 30f,
-            0.1f, 1.26f),
-        arrayOf(0.58f, 0.7f, 1f, 1f,
+            0.1f, 1.26f,
+            R.raw.tabselect),
+        arrayOf(0f, 0.06f, 1f, 1f,
             "",0.01f, 1.35f, 30f,
-            0.1f, 2f),
+            0.1f, 2f,
+            R.raw.productselect),
         arrayOf(0f, 0.34f, 1f, 0.55f,
             "",0.01f, 1.35f, 30f,
-            0.1f, 2f),
+            0.1f, 2f,
+            R.raw.choose_serve),
         arrayOf(0f, 0.55f, 1f, 1f,
             "",0.01f, 1.35f, 30f,
-            0.1f, 2f))
+            0.1f, 2f,
+            R.raw.paymentmethodchoose))
+
     var phase = 0
-    val maxphase = 4
+    val maxphase = 5
 
     fun StartTutorial(){
         Highlight(params[phase][0] as Float, params[phase][1] as Float
@@ -35,6 +50,17 @@ class TutorialViewRenderer(val context: Context,
         SetText(params[phase][4] as String, params[phase][5] as Float,params[phase][6] as Float,params[phase][7] as Float)
 
         SetNextButton(params[phase][8] as Float, params[phase][9] as Float)
+
+        if(::mp.isInitialized){
+            mp.pause()
+            mp.release()
+        }
+        mp = MediaPlayer.create(context, params[phase][10] as Int)
+        mp.start()
+    }
+
+    fun StartFrom_PaymentPhase(){
+        PassPhase_to(4)
     }
 
     fun PassPhase_to(p : Int){
