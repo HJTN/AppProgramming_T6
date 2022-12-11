@@ -5,20 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kioskupgrade.Item
+import com.example.kioskupgrade.DTO.Item
+import com.example.kioskupgrade.MenuAdapter
 import com.example.kioskupgrade.R
-import com.example.kioskupgrade.adapter.MenuAdapter
-import com.example.kioskupgrade.adapter.StockAdapter
 import com.example.kioskupgrade.databinding.FragmentBeverageOrderBinding
 
 
 //주문화면의 음료 탭 제어
-
-class BeverageOrderFragment: Fragment() {
+class BeverageOrderFragment: Fragment(){
     lateinit var binding : FragmentBeverageOrderBinding
+    val dataSet = mutableListOf<Item>()
+    var root = "Stock_DB/Single/Beverage"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,20 +25,11 @@ class BeverageOrderFragment: Fragment() {
     ): View? {
         binding = FragmentBeverageOrderBinding.inflate(inflater, container, false)
 
-        //beverage		생수
-        //beverage2	    아메리카노
-        //beverage3	    콜라
-        //beverage4	    사이다
 
-        val dataSet = mutableListOf<Item>()
-//        dataSet.add(Material(root+"/CocaCola","코카 콜라", R.drawable.cocacola,120))
-//        dataSet.add(Material(root+"/Fanta","환타", R.drawable.fanta,120))
-//        dataSet.add(Material(root+"/Sprite","스프라이트", R.drawable.sprite,120))
-//        dataSet.add(Material(root+"/Water","생수", R.drawable.water,120))
-        dataSet.add(Item("생수", "800 원", R.drawable.beverage))
-        dataSet.add(Item("콜라", "1500 원", R.drawable.beverage3))
-        dataSet.add(Item("사이다", "1500 원", R.drawable.beverage4))
-        dataSet.add(Item("아메리카노", "1800 원", R.drawable.beverage2))
+        dataSet.add(Item(root+"/CocaCola","코카 콜라", 1800, R.drawable.cocacola))
+        dataSet.add(Item(root+"/Fanta","환타", 1800, R.drawable.fanta))
+        dataSet.add(Item(root+"/Sprite","스프라이트", 1800, R.drawable.sprite))
+        dataSet.add(Item(root+"/Water","생수", 1200, R.drawable.water))
 
         val layoutManager = GridLayoutManager(binding.root.context, 3,
             GridLayoutManager.VERTICAL, false)

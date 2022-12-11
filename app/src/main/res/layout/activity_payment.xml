@@ -1,169 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
     android:background="#FFFFFF">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/fff"
+        android:text="결제 화면"
+        android:textSize="30sp"
+        android:layout_gravity="center"/>
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_color"
+        app:tabBackground="@drawable/tab_selector"/>
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="24dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:layout_constraintBottom_toTopOf="@+id/textView1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="200sp" />
 
-        <ImageView
-            android:id="@+id/backdrop"
+    <LinearLayout
+        android:layout_marginTop="5sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/priceTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="5sp"
+            android:layout_weight="1"
+            android:fontFamily="@font/fff"
+            android:text="  총 결제 금액:"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/totalPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="5sp"
+            android:layout_weight="1"
+            android:fontFamily="@font/fff"
+            android:text="0"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="5sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/packing"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_btn"
+            android:fontFamily="@font/fff"
+            android:onClick="takeoff_Click"
+            android:layout_margin="10dp"
+            android:text="포장 하기"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/inShop"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_btn"
+            android:fontFamily="@font/fff"
+            android:onClick="eatin_Click"
+            android:layout_margin="10dp"
+            android:text="매장에서 식사"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/calcMethod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/fff"
+        android:layout_marginTop="30sp"
+        android:text="결제 수단"
+        android:textSize="30sp"
+        android:layout_gravity="center"/>
+
+
+
+    <GridLayout
+        android:layout_marginTop="30sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal"
+        android:columnCount="1"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_marginTop="5sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            android:src="@drawable/order_background_img" />
+            android:orientation="horizontal"
+            android:layout_gravity="center">
 
-    </com.google.android.material.appbar.AppBarLayout>
+            <Button
+                android:id="@+id/cash"
+                android:layout_width="wrap_content"
+                android:layout_height="100sp"
+                android:background="@drawable/round_btn"
+                android:drawableTop="@drawable/won"
+                android:fontFamily="@font/fff"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:onClick="credit"
+                android:text="현금"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:fontFamily="@font/fff"
-        android:textSize="30sp"
-        android:text="결제 화면"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView2"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerView2"
-        app:layout_constraintStart_toEndOf="@+id/recyclerView2"
-        app:layout_constraintTop_toBottomOf="@+id/appbar" />
+            <Button
+                android:id="@+id/creditCard"
+                android:layout_width="wrap_content"
+                android:layout_height="100sp"
+                android:background="@drawable/round_btn"
+                android:drawableTop="@drawable/card2"
+                android:fontFamily="@font/fff"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:onClick="cash"
+                android:text="신용카드"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_marginTop="5sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <Button
+                android:id="@+id/toss"
+                android:layout_width="wrap_content"
+                android:layout_height="100sp"
+                android:background="@drawable/round_btn"
+                android:drawableTop="@drawable/toss"
+                android:fontFamily="@font/fff"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:onClick="toss"
+                android:text="토스"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="11dp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+            <Button
+                android:id="@+id/etc"
+                android:layout_width="wrap_content"
+                android:layout_height="100sp"
+                android:background="@drawable/round_btn"
+                android:drawableTop="@drawable/etc"
+                android:fontFamily="@font/fff"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:onClick="etc"
+                android:text="기타 결제"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="17dp"
-        android:background="@drawable/round_btn"
-        android:fontFamily="@font/fff"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:text="포장 하기"
-        android:onClick="takeoff_Click"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintEnd_toEndOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="@+id/button2"
-        app:layout_constraintTop_toTopOf="@+id/recyclerView2" />
+    </GridLayout>
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="33dp"
-        android:background="@drawable/round_btn"
-        android:text="매장에서 식사"
-        android:textColor="@color/white"
-        android:onClick="eatin_Click"
-        android:fontFamily="@font/fff"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/recyclerView2"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="37dp"
-        android:text="결제 수단"
-        android:fontFamily="@font/fff"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerView2"
-        app:layout_constraintStart_toEndOf="@+id/recyclerView2"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginEnd="23dp"
-        android:layout_marginBottom="12dp"
-        android:background="@drawable/round_btn"
-        android:text="신용카드"
-        android:textColor="@color/white"
-        android:onClick="credit"
-        android:fontFamily="@font/fff"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/button5"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="34dp"
-        android:background="@drawable/round_btn"
-        android:text="현금"
-        android:textColor="@color/white"
-        android:onClick="cash"
-        android:fontFamily="@font/fff"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/button3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button3"
-        app:layout_constraintTop_toTopOf="@+id/button3" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginEnd="23dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/round_btn"
-        android:text="토스"
-        android:textColor="@color/white"
-        android:onClick="toss"
-        android:fontFamily="@font/fff"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="34dp"
-        android:background="@drawable/round_btn"
-        android:text="기타 결제"
-        android:textColor="@color/white"
-        android:onClick="etc"
-        android:fontFamily="@font/fff"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/button5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button5"
-        app:layout_constraintTop_toTopOf="@+id/button5" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

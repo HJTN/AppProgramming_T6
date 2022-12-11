@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.kioskupgrade.DTO.Material
@@ -26,7 +27,6 @@ class StockAdapter(val dataSet: MutableList<Material>): RecyclerView.Adapter<Rec
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-//        Log.d("RecyclerView", "onBindViewHolder(): $position")
         val binding = (holder as StockViewHolder).binding
         val dialogBinding = StockEditBinding.inflate(inflater)
         val decimalFormat = DecimalFormat("#,###")
@@ -50,7 +50,6 @@ class StockAdapter(val dataSet: MutableList<Material>): RecyclerView.Adapter<Rec
 
                     var updateData = mutableMapOf<String, Any>()
                     updateData.put("num", editedNum)
-                    updateData.put("img", dataSet[position].img)
                     Firebase.database.reference.child(dataSet[position].key).updateChildren(updateData)
 
                     Toast.makeText(binding.root.context, "${binding.itemName.text} x ${editedNum}", Toast.LENGTH_SHORT).show()

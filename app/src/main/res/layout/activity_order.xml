@@ -7,18 +7,18 @@
     android:orientation="vertical"
     android:background="#FFFFFF">
 
-<!--    <com.google.android.material.appbar.AppBarLayout-->
-<!--        android:id="@+id/appbar"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="100dp"-->
-<!--        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">-->
-<!--        <ImageView-->
-<!--            android:id="@+id/backdrop"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:scaleType="centerCrop"-->
-<!--            android:src="@drawable/order_background_img" />-->
-<!--    </com.google.android.material.appbar.AppBarLayout>-->
+    <!--    <com.google.android.material.appbar.AppBarLayout-->
+    <!--        android:id="@+id/appbar"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="100dp"-->
+    <!--        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">-->
+    <!--        <ImageView-->
+    <!--            android:id="@+id/backdrop"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:scaleType="centerCrop"-->
+    <!--            android:src="@drawable/order_background_img" />-->
+    <!--    </com.google.android.material.appbar.AppBarLayout>-->
 
     <TextView
         android:id="@+id/textView"
@@ -40,13 +40,14 @@
         app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/sub_color"
         app:tabTextAppearance="@style/tabTextStyle"
-        app:tabTextColor="@color/white" />
+        app:tabTextColor="@color/white"
+        />
 
     <FrameLayout
         android:id="@+id/tabContent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        android:layout_height="400sp"
+        />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -54,46 +55,65 @@
         android:background="@drawable/red"/>
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#C3C3C3"
+        android:layout_weight="1"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/tabContent"
         tools:layout_editor_absoluteX="0dp">
 
-        <TextView
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="주문 품목 넣을자리"
-            android:textSize="20sp" />
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="180sp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@color/white" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="180sp"
             android:layout_height="wrap_content"
+            android:layout_weight="2"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/purchase"
-                android:layout_width="200dp"
+            <TextView
+                android:id="@+id/sum"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/fff"
+                android:text="가격: 00,000"
+                android:textSize="30sp" />
+
+            <Button
+                android:layout_marginTop="5sp"
+                android:id="@+id/purchase"
+                android:layout_width="180sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:background="@drawable/round_btn"
                 android:fontFamily="@font/fff"
                 android:onClick="purchase_Click"
                 android:text="결제하기"
                 android:textColor="@color/white"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:layout_weight="1"/>
 
             <Button
-                android:layout_marginTop="5sp"
-                android:id="@+id/modify"
-                android:layout_width="200dp"
+                android:id="@+id/redo"
+                android:layout_width="180sp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2sp"
                 android:background="@drawable/round_btn"
                 android:fontFamily="@font/fff"
                 android:onClick="undo_Click"
                 android:text="주문 수정하기"
                 android:textColor="@color/white"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:layout_weight="1"/>
+
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
