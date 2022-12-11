@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.kioskupgrade.com.example.kioskupgrade.TutorialViewRenderer
 import com.example.kioskupgrade.databinding.ActivityOrderBinding
 import com.example.kioskupgrade.databinding.ActivityPaymentBinding
 import com.google.firebase.database.DataSnapshot
@@ -28,6 +29,7 @@ class paymentActivity : AppCompatActivity() {
     var itemKeys: ArrayList<String>? = null
     var currentStock = mutableMapOf<String, Map<String, Int>>()
     var sumprice = 0
+    lateinit var tutorial_renderer : TutorialViewRenderer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,10 +71,14 @@ class paymentActivity : AppCompatActivity() {
 
         binding.packing.setOnClickListener {
             Toast.makeText(this,"포장을 눌렀습니다",Toast.LENGTH_SHORT).show();
+            if(CrossActivityInfo.isTutorial)
+                tutorial_renderer.MovePhase()
         }
 
         binding.inShop.setOnClickListener {
             Toast.makeText(this,"매장에서 식사를 눌렀습니다",Toast.LENGTH_SHORT).show();
+            if(CrossActivityInfo.isTutorial)
+                tutorial_renderer.MovePhase()
         }
 
         //하단 4개의 결제버튼을 눌렀을시에 발생하는 이벤트의 헨들러
@@ -109,6 +115,8 @@ class paymentActivity : AppCompatActivity() {
             builder.setView(dialoglayout)
             builder.show()
 
+            if(CrossActivityInfo.isTutorial)
+                tutorial_renderer.MovePhase()
         }
 
         binding.cash.setOnClickListener {
@@ -123,6 +131,9 @@ class paymentActivity : AppCompatActivity() {
 
             builder.setView(dialoglayout)
             builder.show()
+
+            if(CrossActivityInfo.isTutorial)
+                tutorial_renderer.MovePhase()
         }
 
         binding.toss.setOnClickListener {
@@ -138,6 +149,8 @@ class paymentActivity : AppCompatActivity() {
             builder.setView(dialoglayout)
             builder.show()
 
+            if(CrossActivityInfo.isTutorial)
+                tutorial_renderer.MovePhase()
         }
 
         binding.etc.setOnClickListener {
@@ -153,5 +166,28 @@ class paymentActivity : AppCompatActivity() {
             builder.setView(dialoglayout)
             builder.show()
 
+            if(CrossActivityInfo.isTutorial)
+                tutorial_renderer.MovePhase()
         }
-    }}
+
+        if(CrossActivityInfo.isTutorial){
+            SetTutorialView(binding)
+        }
+    }
+
+    fun SetTutorialView(binding : ActivityPaymentBinding){
+        val panels : MutableList<ImageView> = mutableListOf()
+        panels.add(binding.tutorialPanel1)
+        panels.add(binding.tutorialPanel2)
+        panels.add(binding.tutorialPanel3)
+        panels.add(binding.tutorialPanel4)
+
+        tutorial_renderer = TutorialViewRenderer(this.applicationContext, panels, binding.tutorialText, binding.tutorialNextButton)
+//        tutorial_renderer.Highlight(0.05f, 0.6f, 0.97f, 1f)
+//        tutorial_renderer.SetText("",0.01f, 1.35f, 30f)
+//        tutorial_renderer.SetNextButton(0.1f, 2f)
+
+        tutorial_renderer.PassPhase_to(3)
+        tutorial_renderer.StartTutorial()
+    }
+}

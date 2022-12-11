@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
             override fun onClick(view: View?) {
                 val intent = Intent(applicationContext, SubActivity::class.java)
                 startActivity(intent)
+                CrossActivityInfo.isTutorial = false
             }
         })
 
@@ -45,6 +46,7 @@ class MainActivity : AppCompatActivity() {
             override fun onClick(view: View?) {
                 val intent = Intent(applicationContext, SubActivity::class.java)
                 startActivity(intent)
+                CrossActivityInfo.isTutorial = true
             }
         })
 

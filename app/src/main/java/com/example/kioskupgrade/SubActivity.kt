@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kioskupgrade.DTO.Item
+import com.example.kioskupgrade.com.example.kioskupgrade.TutorialViewRenderer
 import com.example.kioskupgrade.databinding.ActivityOrderBinding
 import com.example.kioskupgrade.databinding.MenuItemBinding
 import com.example.kioskupgrade.fragment.BeverageOrderFragment
@@ -109,8 +110,25 @@ class SubActivity : AppCompatActivity() {
             intent.putExtra("price", totalPrice)
             startActivity(intent)
         }
+
+        if(CrossActivityInfo.isTutorial){
+            SetTutorialView(binding)
+        }
     }
 
+    fun SetTutorialView(binding : ActivityOrderBinding){
+        val panels : MutableList<ImageView> = mutableListOf()
+        panels.add(binding.tutorialPanel1)
+        panels.add(binding.tutorialPanel2)
+        panels.add(binding.tutorialPanel3)
+        panels.add(binding.tutorialPanel4)
+
+        val tutorial_renderer = TutorialViewRenderer(this.applicationContext, panels, binding.tutorialText, binding.tutorialNextButton)
+        //tutorial_renderer.Highlight(0.45f, 0.73f, 1f, 1f)
+        //tutorial_renderer.SetText("",0.01f, 1.35f, 30f)
+        //tutorial_renderer.SetNextButton(0.1f, 2f)
+        tutorial_renderer.StartTutorial()
+    }
 }
 
 class MenuViewHolder(val binding: MenuItemBinding): RecyclerView.ViewHolder(binding.root)
