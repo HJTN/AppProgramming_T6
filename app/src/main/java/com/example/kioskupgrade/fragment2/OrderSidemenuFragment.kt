@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.kioskupgrade.Item
 import com.example.kioskupgrade.R
-import com.example.kioskupgrade.adapter.MenuAdapter
+import com.example.kioskupgrade.MenuAdapter
 import com.example.kioskupgrade.databinding.FragmentSidemenuOrderBinding
 
 
