@@ -7,19 +7,6 @@
     android:orientation="vertical"
     android:background="#FFFFFF">
 
-    <!--    <com.google.android.material.appbar.AppBarLayout-->
-    <!--        android:id="@+id/appbar"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="100dp"-->
-    <!--        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">-->
-    <!--        <ImageView-->
-    <!--            android:id="@+id/backdrop"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:scaleType="centerCrop"-->
-    <!--            android:src="@drawable/order_background_img" />-->
-    <!--    </com.google.android.material.appbar.AppBarLayout>-->
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -63,16 +50,16 @@
 
         <ListView
             android:id="@+id/listView"
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:background="@color/white" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:layout_weight="2"
             android:orientation="vertical"
+            android:layout_weight="3"
             android:gravity="center">
 
             <TextView
