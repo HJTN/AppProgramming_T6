@@ -33,6 +33,10 @@ class BeverageOrderFragment: Fragment() {
         //beverage4	    사이다
 
         val dataSet = mutableListOf<Item>()
+//        dataSet.add(Material(root+"/CocaCola","코카 콜라", R.drawable.cocacola,120))
+//        dataSet.add(Material(root+"/Fanta","환타", R.drawable.fanta,120))
+//        dataSet.add(Material(root+"/Sprite","스프라이트", R.drawable.sprite,120))
+//        dataSet.add(Material(root+"/Water","생수", R.drawable.water,120))
         dataSet.add(Item("생수", "800 원", R.drawable.beverage))
         dataSet.add(Item("콜라", "1500 원", R.drawable.beverage3))
         dataSet.add(Item("사이다", "1500 원", R.drawable.beverage4))
@@ -44,10 +48,6 @@ class BeverageOrderFragment: Fragment() {
         binding.recyclerView2.layoutManager = layoutManager
         binding.recyclerView2.adapter = MenuAdapter(dataSet)
 
-//        binding.recyclerView2.addItemDecoration(
-//            DividerItemDecoration(binding.root.context,
-//                LinearLayoutManager.VERTICAL)
-//        )
         (binding.recyclerView2.adapter as MenuAdapter).notifyDataSetChanged()
 
         return binding.root

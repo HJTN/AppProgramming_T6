@@ -70,15 +70,12 @@ class SubActivity : AppCompatActivity() {
             }
         })
 
-
-
-        val next1Button: Button = findViewById(R.id.purchase)
-        next1Button.setOnClickListener {
+        binding.purchase.setOnClickListener {
             val intent = Intent(applicationContext, paymentActivity::class.java)
             startActivity(intent)
         }
-        val next2Button: Button = findViewById(R.id.redo)
-        next2Button.setOnClickListener{popupbtnlistener()}
+
+        binding.modify.setOnClickListener{popupbtnlistener()}
 
 
     }

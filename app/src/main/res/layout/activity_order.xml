@@ -85,7 +85,7 @@
 
             <Button
                 android:layout_marginTop="5sp"
-                android:id="@+id/redo"
+                android:id="@+id/modify"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/round_btn"

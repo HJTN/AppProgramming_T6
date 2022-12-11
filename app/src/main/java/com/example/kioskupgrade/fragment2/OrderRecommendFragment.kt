@@ -36,10 +36,6 @@ class RecommendOrderFragment: Fragment() {
         binding.recyclerView2.layoutManager = layoutManager
         binding.recyclerView2.adapter = MenuAdapter(dataSet)
 
-//        binding.recyclerView2.addItemDecoration(
-//            DividerItemDecoration(binding.root.context,
-//            LinearLayoutManager.VERTICAL))
-
         (binding.recyclerView2.adapter as MenuAdapter).notifyDataSetChanged()
 
         return binding.root

@@ -20,7 +20,7 @@
         android:id="@+id/kioskmainBtn"
         android:layout_width="300dp"
         android:layout_height="70dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/size80"
         android:background="@drawable/round_btn"
         android:text="주문하기"
         android:fontFamily="@font/fff"
@@ -41,7 +41,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/size60">
         <Button
             android:id="@+id/stockBtn"
             android:layout_width="@dimen/size120"
