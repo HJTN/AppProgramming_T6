@@ -20,9 +20,7 @@ import com.example.kioskupgrade.fragment.SidemenuOrderFragment
 import com.example.teamprogect.fragment.RecommendOrderFragment
 import com.google.android.material.tabs.TabLayout
 
-
 //주문 화면 관리
-
 var items = ArrayList<String>()
 var adapter: ArrayAdapter<String>? = null
 var totalPrice : Int = 0
@@ -31,7 +29,6 @@ lateinit var priceText: TextView
 class SubActivity : AppCompatActivity() {
     lateinit var fragmentManager: FragmentManager
     lateinit var transaction: FragmentTransaction
-
     var listView: ListView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,6 +80,7 @@ class SubActivity : AppCompatActivity() {
                 Log.d("TabButton", "onTabReselected...")
             }
         })
+
         items.clear()
         totalPrice = 0
 
@@ -98,7 +96,6 @@ class SubActivity : AppCompatActivity() {
         listView = findViewById(R.id.listView) as ListView?
         listView!!.adapter = adapter
 
-
         val next1Button: Button = findViewById(R.id.purchase)
         next1Button.setOnClickListener {
             val intent = Intent(applicationContext, paymentActivity::class.java)
@@ -112,7 +109,6 @@ class SubActivity : AppCompatActivity() {
         next2Button.setOnClickListener{
             popupbtnlistener()
         }
-
     }
     fun popupbtnlistener(){
         val customdialog = CustomDialog(this)

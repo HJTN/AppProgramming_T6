@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 //결제화면 제어
 
 class paymentActivity : AppCompatActivity() {
-
     var items2: ArrayList<String>? = null
     var adapter: ArrayAdapter<String>? = null
     var listView: ListView? = null
@@ -123,8 +122,4 @@ class paymentActivity : AppCompatActivity() {
             builder.show()
 
         }
-
-
-
-
     }}

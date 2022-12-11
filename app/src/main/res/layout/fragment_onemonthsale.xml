@@ -17,7 +17,7 @@
             android:id="@+id/recentSaleMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="총 판매한 금액"
+            android:text="1달 판매한 메뉴"
             android:textSize="@dimen/fsize24"
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -61,8 +61,69 @@
         android:layout_height="0dp"
         android:layout_margin="@dimen/size20"
         app:layout_constraintTop_toBottomOf="@id/subBox1"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomBar2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomBar2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size40"
+        android:background="@color/black_200"
+        app:layout_constraintBottom_toTopOf="@id/bottomBar1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/infoTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="총 판매량"
+            android:textSize="@dimen/fsize16"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/size60"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/infoContent"/>
+
+        <TextView
+            android:id="@+id/infoContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="xx 개"
+            android:textSize="@dimen/fsize16"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/size20"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomBar1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size60"
+        android:background="@color/main_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+            android:id="@+id/printBtn"
+            android:layout_width="@dimen/size100"
+            android:layout_height="wrap_content"
+            android:text="출력하기"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fsize16"
+            android:background="@drawable/modifybtn"
+            android:layout_margin="@dimen/size10"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

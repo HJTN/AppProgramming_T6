@@ -15,7 +15,6 @@ import com.google.android.material.tabs.TabLayout
 import com.google.firebase.database.DatabaseReference
 
 //재고확인 화면 관리
-
 class StockActivity : AppCompatActivity() {
     lateinit var fragmentManager: FragmentManager
     lateinit var transaction: FragmentTransaction

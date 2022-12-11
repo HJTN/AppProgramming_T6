@@ -13,6 +13,7 @@
     <dimen name="size100">100dp</dimen>
     <dimen name="size120">120dp</dimen>
     <dimen name="size160">160dp</dimen>
+    <dimen name="size200">200dp</dimen>
 
     <dimen name="fsize16">16sp</dimen>
     <dimen name="fsize24">24sp</dimen>

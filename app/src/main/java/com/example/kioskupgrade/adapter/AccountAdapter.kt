@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.kioskupgrade.DTO.Sale
 import com.example.kioskupgrade.R
 import com.example.kioskupgrade.databinding.AccountItemBinding
+import java.text.DecimalFormat
 
 class AccountViewHolder(val binding: AccountItemBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -20,12 +21,12 @@ class AccountAdapter(val dataSet: MutableList<Sale>): RecyclerView.Adapter<Recyc
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         Log.d("RecyclerView", "onBindViewHolder(): $position")
         val binding = (holder as AccountViewHolder).binding
+        val decimalFormat = DecimalFormat("#,###")
 
-        Log.d("Data Check",dataSet[position].toString())
         binding.itemImg.setImageResource(dataSet[position].img)
         binding.itemName.text = dataSet[position].name
-        binding.itemNum.text = "x ${dataSet[position].num}"
-        binding.itemAccount.text = dataSet[position].account.toString()
+        binding.itemNum.text = "x " + decimalFormat.format(dataSet[position].num)
+        binding.itemAccount.text = decimalFormat.format(dataSet[position].account)
 
         binding.itemRoot.setOnClickListener {
             Toast.makeText(binding.root.context, "${binding.itemName.text} x ${binding.itemNum.text} x ${binding.itemAccount.text}", Toast.LENGTH_SHORT).show()

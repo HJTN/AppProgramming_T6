@@ -13,7 +13,6 @@ import com.example.kioskupgrade.databinding.FragmentBeverageOrderBinding
 
 
 //주문화면의 음료 탭 제어
-
 class BeverageOrderFragment: Fragment(){
     lateinit var binding : FragmentBeverageOrderBinding
 
@@ -49,6 +48,4 @@ class BeverageOrderFragment: Fragment(){
 
         return binding.root
     }
-
-
 }
