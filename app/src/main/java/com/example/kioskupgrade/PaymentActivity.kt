@@ -99,6 +99,8 @@ class paymentActivity : AppCompatActivity() {
                     //부정 버튼을 누른다면-> ALERT DIALOG DISSMISS
                 }else	if(which	==	DialogInterface.BUTTON_NEGATIVE)	{
                     Log.d("ALERTDLG",	"결제를 취소하였습니다 다시 시도해주세요")
+                    val player: MediaPlayer = MediaPlayer.create(this@paymentActivity,R.raw.cancel)
+                    player.start()
                 }
             }
         }
