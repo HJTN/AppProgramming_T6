@@ -15,26 +15,32 @@ class TutorialViewRenderer(val context: Context,
     lateinit var mp : MediaPlayer
 
     val params = arrayOf(
+
         arrayOf(0f, 0f, 0f, 0f,
-            "", 0.3f, 0.5f, 30f,
-            0.5f, 0.5f,
+            "주문 시작하기", 0.23f, 0.5f, 40f,
+            0.37f, 0.8f,
             R.raw.intro),
+
         arrayOf(0f, 0.06f, 1f, 0.13f,
-        "종류를 선택해주세요", 0.3f, 0.5f, 30f,
-        0.6f, 0.7f,
+        "상단 탭 버튼의\n종류를 선택해주세요", 0.07f, 0.7f, 40f,
+        0.37f, 1f,
             R.raw.tab4),
+
         arrayOf(0f, 0.06f, 1f, 0.7f,
-            "메뉴를 담아주세요",0.01f, 1.16f, 30f,
-            0.1f, 1.26f,
+            "메뉴를 담아주세요",0.4f, 1.3f, 30f,
+            0.67f, 1.42f,
             R.raw.tabselect),
+
         arrayOf(0f, 0.06f, 1f, 1f,
             "",0.01f, 1.35f, 30f,
             0.1f, 2f,
             R.raw.productselect),
-        arrayOf(0f, 0.34f, 1f, 0.55f,
+
+        arrayOf(0f, 0.06f, 1f, 0.55f,
             "",0.01f, 1.35f, 30f,
             0.1f, 2f,
             R.raw.choose_serve),
+
         arrayOf(0f, 0.55f, 1f, 1f,
             "",0.01f, 1.35f, 30f,
             0.1f, 2f,
