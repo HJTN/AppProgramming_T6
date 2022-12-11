@@ -2,6 +2,7 @@ package com.example.kioskupgrade
 
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
@@ -20,5 +21,7 @@ class FinishActivity: AppCompatActivity() {
             System.exit(0)
         }, 3000) // 3000==3초
 
+        val mp = MediaPlayer.create(this, R.raw.finish)
+        mp.start()
     }
 }
