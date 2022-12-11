@@ -26,7 +26,7 @@ class paymentActivity : AppCompatActivity() {
     var adapter: ArrayAdapter<String>? = null
     var items: ArrayList<String>? = null
     var itemKeys: ArrayList<String>? = null
-    var currentNum = mutableMapOf<String, Int>()
+    var currentStock = mutableMapOf<String, Map<String, Int>>()
     var sumprice = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,15 +42,21 @@ class paymentActivity : AppCompatActivity() {
         itemKeys = intent.getStringArrayListExtra("keys")
         database = Firebase.database.reference
         for (k in itemKeys!!) {
+            var tempItem = mutableMapOf<String, Int>()
+
             database.child(k).addValueEventListener(object: ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    currentNum.put(k, snapshot.child("num").value.toString().toInt()-1)
+                    tempItem.put("num",snapshot.child("num").value.toString().toInt()-1)
+                    tempItem.put("rescent_sale",snapshot.child("rescent_sale").value.toString().toInt()+1)
+                    tempItem.put("today_sale",snapshot.child("today_sale").value.toString().toInt()+1)
+                    tempItem.put("twoweek_sale",snapshot.child("twoweek_sale").value.toString().toInt()+1)
+                    tempItem.put("onemonth_sale",snapshot.child("onemonth_sale").value.toString().toInt()+1)
                 }
-
                 override fun onCancelled(error: DatabaseError) {
                     Log.d("Error",error.message)
                 }
             })
+            currentStock.put(k, tempItem)
         }
 
         adapter = ArrayAdapter<String>(
@@ -76,11 +82,9 @@ class paymentActivity : AppCompatActivity() {
                 //긍정 버튼을 누른다면(결제완료)-> finsh activty 이동->어플 종료후 다시 실행
                 if(which	==	DialogInterface.BUTTON_POSITIVE)	{
 //                    Log.d("Data Check",currentNum.toString())
-                    for (i in currentNum) {
-                        var updateData = mutableMapOf<String, Any>()
-                        updateData.put("num", i.value)
-//                        Log.d("Data Check",updateData.toString())
-                        Firebase.database.reference.child(i.key).updateChildren(updateData)
+                    for (i in currentStock) {
+                        Log.d("Data Check",i.value.toString())
+                        Firebase.database.reference.child(i.key).updateChildren(i.value)
                     }
 
                     val intent = Intent(applicationContext, FinishActivity::class.java)
