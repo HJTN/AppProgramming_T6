@@ -1,20 +1,4 @@
-package com.example.kioskupgrade
-
-import android.annotation.SuppressLint
-import android.content.Intent
-import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import androidx.recyclerview.widget.RecyclerView
-import com.example.kioskupgrade.DTO.Item
-import com.example.kioskupgrade.com.example.kioskupgrade.TutorialViewRenderer
-import com.example.kioskupgrade.databinding.ActivityOrderBinding
+import com.example.kioskupgrade.databinding.OrderItemBinding
 import com.example.kioskupgrade.databinding.MenuItemBinding
 import com.example.kioskupgrade.fragment.BeverageOrderFragment
 import com.example.kioskupgrade.fragment.HamburgerOrderFragment
@@ -30,6 +14,7 @@ var subPriceList = ArrayList<Int>() // 주문 메뉴 하나당 가격(개수 수
 var numList = ArrayList<Int>()  // 주문 메뉴당 개수
 var stocks = ArrayList<String>()
 var adapter: OrderAdapter? = null
+
 var totalPrice : Int = 0
 lateinit var priceText: TextView
 
@@ -110,13 +95,30 @@ class SubActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, paymentActivity::class.java)
 
             // 다음액티비티인 payment activity에 어레이리스트 전달
-            intent.putStringArrayListExtra("items", orderList)
+            intent.putStringArrayListExtra("items",orderList)
             intent.putStringArrayListExtra("keys", stocks)
             intent.putExtra("price", totalPrice)
             startActivity(intent)
         }
+
+        if(CrossActivityInfo.isTutorial){
+            SetTutorialView(binding)
+        }
     }
 
+    fun SetTutorialView(binding : ActivityOrderBinding){
+        val panels : MutableList<ImageView> = mutableListOf()
+        panels.add(binding.tutorialPanel1)
+        panels.add(binding.tutorialPanel2)
+        panels.add(binding.tutorialPanel3)
+        panels.add(binding.tutorialPanel4)
+
+        val tutorial_renderer = TutorialViewRenderer(this.applicationContext, panels, binding.tutorialText, binding.tutorialNextButton)
+        //tutorial_renderer.Highlight(0.45f, 0.73f, 1f, 1f)
+        //tutorial_renderer.SetText("",0.01f, 1.35f, 30f)
+        //tutorial_renderer.SetNextButton(0.1f, 2f)
+        tutorial_renderer.StartTutorial()
+    }
 }
 
 class OrderAdapter(val context: Context, val order : ArrayList<String>) : BaseAdapter() {
