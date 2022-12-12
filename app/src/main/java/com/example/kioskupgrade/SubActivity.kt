@@ -1,3 +1,21 @@
+package com.example.kioskupgrade
+
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.RecyclerView
+import com.example.kioskupgrade.DTO.Item
+import com.example.kioskupgrade.com.example.kioskupgrade.TutorialViewRenderer
+import com.example.kioskupgrade.databinding.ActivityOrderBinding
 import com.example.kioskupgrade.databinding.OrderItemBinding
 import com.example.kioskupgrade.databinding.MenuItemBinding
 import com.example.kioskupgrade.fragment.BeverageOrderFragment
