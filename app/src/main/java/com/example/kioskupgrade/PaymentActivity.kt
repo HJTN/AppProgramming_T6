@@ -1,17 +1,22 @@
 package com.example.kioskupgrade
 
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kioskupgrade.com.example.kioskupgrade.TutorialViewRenderer
 import com.example.kioskupgrade.databinding.ActivityOrderBinding
 import com.example.kioskupgrade.databinding.ActivityPaymentBinding
+import com.example.kioskupgrade.databinding.OrderItemBinding
+import com.example.kioskupgrade.databinding.PaymentItemBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -21,13 +26,17 @@ import com.google.firebase.ktx.Firebase
 import java.text.DecimalFormat
 
 //결제화면 제어
+var items = ArrayList<String>()
+var prices = ArrayList<Int>()
+var numbs = ArrayList<Int>()
 
 class paymentActivity : AppCompatActivity() {
     lateinit var database : DatabaseReference
     val decimalFormat = DecimalFormat("#,###")
-    var adapter: ArrayAdapter<String>? = null
-    var items: ArrayList<String>? = null
+    var adapter: PaymentAdapter? = null
+
     var itemKeys: ArrayList<String>? = null
+
     var currentStock = mutableMapOf<String, Map<String, Int>>()
     var sumprice = 0
     lateinit var tutorial_renderer : TutorialViewRenderer
@@ -38,7 +47,9 @@ class paymentActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val intent = intent
-        items = intent.getStringArrayListExtra("items")
+        items = intent.getStringArrayListExtra("items") as ArrayList<String>
+        prices = intent.getIntegerArrayListExtra("prices") as ArrayList<Int>
+        numbs = intent.getIntegerArrayListExtra("numbs") as ArrayList<Int>
         sumprice= intent.getIntExtra("price", 0)
         binding.totalPrice.text = decimalFormat.format(sumprice)+" 원"
 
@@ -62,10 +73,7 @@ class paymentActivity : AppCompatActivity() {
             currentStock.put(k, tempItem)
         }
 
-        adapter = ArrayAdapter<String>(
-            this@paymentActivity,
-            android.R.layout.simple_list_item_1, items!!
-        )
+        adapter = PaymentAdapter(this, items)
 
         // 어댑터 설정
         binding.listView.adapter = adapter
@@ -209,4 +217,36 @@ class paymentActivity : AppCompatActivity() {
         tutorial_renderer.StartFrom_PaymentPhase()
         tutorial_renderer.StartTutorial()
     }
+}
+
+class PaymentAdapter(val context: Context, val order : ArrayList<String>) : BaseAdapter() {
+    override fun getCount(): Int {
+        return order.size
+    }
+
+    override fun getItem(position: Int): Any {
+        return order[position]
+    }
+
+    override fun getItemId(position: Int): Long {
+        return 0
+    }
+
+    override fun getView(position: Int, p1: View?, p2: ViewGroup?): View {
+        val binding2 = PaymentItemBinding.inflate(LayoutInflater.from(context))
+        val view:View = binding2.root
+
+        val decimalFormat = DecimalFormat("#,###")
+
+        val menu = binding2.tvMenu
+        val num = binding2.tvNum
+        val price = binding2.tvPrice
+
+        menu.text = items[position]
+        num.text = "x " + numbs[position].toString()
+        price.text = decimalFormat.format(prices[position]) + " 원"
+
+        return view
+    }
+
 }
