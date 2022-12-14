@@ -114,6 +114,8 @@ class SubActivity : AppCompatActivity() {
 
             // 다음액티비티인 payment activity에 어레이리스트 전달
             intent.putStringArrayListExtra("items",orderList)
+            intent.putIntegerArrayListExtra("prices", priceList)
+            intent.putIntegerArrayListExtra("numbs", numList)
             intent.putStringArrayListExtra("keys", stocks)
             intent.putExtra("price", totalPrice)
             startActivity(intent)
