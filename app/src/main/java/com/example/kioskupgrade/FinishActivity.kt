@@ -19,7 +19,7 @@ class FinishActivity: AppCompatActivity() {
             val intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
             System.exit(0)
-        }, 3000) // 3000==3초
+        }, 4000) // 4000==4초
 
         val mp = MediaPlayer.create(this, R.raw.finish)
         mp.start()
