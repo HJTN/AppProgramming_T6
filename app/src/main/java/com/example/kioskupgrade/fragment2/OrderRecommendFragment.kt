@@ -27,18 +27,18 @@ class RecommendOrderFragment: Fragment() {
         binding = FragmentRecommendOrderBinding.inflate(inflater, container, false)
 
         // 세트
-        dataSet.add(Item(root+"/Set/BigMac","빅맥 세트", 5900, R.drawable.bigmacburgerset))
-        dataSet.add(Item(root+"/Set/QuarterPounderCheese","쿼터파운더 치즈 세트", 6700, R.drawable.quarterpoundercheeseburgerset))
-        dataSet.add(Item(root+"/Set/DoubleBeefMeetChiliBurger","더블 비프 미트칠리 버거 세트", 9500, R.drawable.doublebeefmeetchiliburgerset))
-        dataSet.add(Item(root+"/Set/DoubleBulgogiBurger","더블 불고기 버거 세트", 5500, R.drawable.doublebulgogiburgerset))
+        dataSet.add(Item(root+"/Set/BigMac","빅맥 세트", 5900, R.drawable.bigmacburgerset, 100))
+        dataSet.add(Item(root+"/Set/QuarterPounderCheese","쿼터파운더 치즈 세트", 6700, R.drawable.quarterpoundercheeseburgerset, 100))
+        dataSet.add(Item(root+"/Set/DoubleBeefMeetChiliBurger","더블 비프 미트칠리 버거 세트", 9500, R.drawable.doublebeefmeetchiliburgerset, 90))
+        dataSet.add(Item(root+"/Set/DoubleBulgogiBurger","더블 불고기 버거 세트", 5500, R.drawable.doublebulgogiburgerset, 0))
         // 단품
-        dataSet.add(Item(root+"/Single/Burger/BigMac","빅맥", 4600, R.drawable.bigmacburger))
-        dataSet.add(Item(root+"/Single/Burger/QuarterPounderCheese","쿼터파운더 치즈", 5200, R.drawable.quarterpoundercheeseburger))
-        dataSet.add(Item(root+"/Single/Beverage/CocaCola","코카 콜라", 1800, R.drawable.cocacola))
-        dataSet.add(Item(root+"/Single/Beverage/Fanta","환타", 1800, R.drawable.fanta))
-        dataSet.add(Item(root+"/Single/SideMenu/FrenchFries","후렌치 후라이", 1700, R.drawable.frenchfries))
-        dataSet.add(Item(root+"/Single/SideMenu/McNuggets","맥너겟", 1800, R.drawable.mcnuggets))
-        dataSet.add(Item(root+"/Single/SideMenu/GoldenMozzarellaCheeseSticks","골든 모짜렐라 치즈 스틱", 2200, R.drawable.goldenmozzarellacheesesticks))
+        dataSet.add(Item(root+"/Single/Burger/BigMac","빅맥", 4600, R.drawable.bigmacburger, 0))
+        dataSet.add(Item(root+"/Single/Burger/QuarterPounderCheese","쿼터파운더 치즈", 5200, R.drawable.quarterpoundercheeseburger, 0))
+        dataSet.add(Item(root+"/Single/Beverage/CocaCola","코카 콜라", 1800, R.drawable.cocacola, 80))
+        dataSet.add(Item(root+"/Single/Beverage/Fanta","환타", 1800, R.drawable.fanta, 80))
+        dataSet.add(Item(root+"/Single/SideMenu/FrenchFries","후렌치 후라이", 1700, R.drawable.frenchfries, 80))
+        dataSet.add(Item(root+"/Single/SideMenu/McNuggets","맥너겟", 1800, R.drawable.mcnuggets,100))
+        dataSet.add(Item(root+"/Single/SideMenu/GoldenMozzarellaCheeseSticks","골든 모짜렐라 치즈 스틱", 2200, R.drawable.goldenmozzarellacheesesticks, 0))
 
         val layoutManager = GridLayoutManager(binding.root.context, 3,
             GridLayoutManager.VERTICAL, false)

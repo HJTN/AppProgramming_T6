@@ -26,10 +26,10 @@ class SidemenuOrderFragment: Fragment() {
     ): View? {
         binding = FragmentSidemenuOrderBinding.inflate(inflater, container, false)
 
-        dataSet.add(Item(root+"/FrenchFries","후렌치 후라이", 1700, R.drawable.frenchfries))
-        dataSet.add(Item(root+"/GoldenMozzarellaCheeseSticks","골든 모짜렐라 치즈 스틱", 2200, R.drawable.goldenmozzarellacheesesticks))
-        dataSet.add(Item(root+"/McNuggets","맥너겟", 1800, R.drawable.mcnuggets))
-        dataSet.add(Item(root+"/ShanghaiChickenSnackWrap","상하이 치킨 스낵랩", 2000, R.drawable.shanghaichickensnackwrap))
+        dataSet.add(Item(root+"/FrenchFries","후렌치 후라이", 1700, R.drawable.frenchfries,0))
+        dataSet.add(Item(root+"/GoldenMozzarellaCheeseSticks","골든 모짜렐라 치즈 스틱", 2200, R.drawable.goldenmozzarellacheesesticks,80))
+        dataSet.add(Item(root+"/McNuggets","맥너겟", 1800, R.drawable.mcnuggets,0))
+        dataSet.add(Item(root+"/ShanghaiChickenSnackWrap","상하이 치킨 스낵랩", 2000, R.drawable.shanghaichickensnackwrap,90))
 
         val layoutManager = GridLayoutManager(binding.root.context, 3,
             GridLayoutManager.VERTICAL, false)

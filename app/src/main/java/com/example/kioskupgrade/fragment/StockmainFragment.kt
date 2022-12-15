@@ -73,7 +73,7 @@ class StockmainFragment: Fragment() {
                 Log.d("Error",error.message)
             }
         })
-
+        Log.d("Data Check", dataSet.size.toString())
         // RecyclerView 설정
         binding.recyclerView.layoutManager = LinearLayoutManager(binding.root.context)
 

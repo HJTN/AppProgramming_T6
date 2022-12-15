@@ -10,6 +10,16 @@
     android:padding="3dp">
 
     <ImageView
+        android:id="@+id/itemSoldout"
+        android:layout_width="@dimen/size80"
+        android:layout_height="@dimen/size80"
+        android:src="@drawable/soldout"
+        android:visibility="invisible"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
         android:id="@+id/itemImg"
         android:layout_width="match_parent"
         android:layout_height="100dp"

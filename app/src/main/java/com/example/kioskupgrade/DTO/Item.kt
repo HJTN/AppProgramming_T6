@@ -7,14 +7,16 @@ class Item {
     var name = ""
     var price: Int = 0
     var img: Int = 0
+    var num: Int = 0
 
     constructor()
 
-    constructor(key: String, name: String, price: Int, img: Int) {
+    constructor(key: String, name: String, price: Int, img: Int, num: Int) {
         this.key = key
         this.name = name
         this.price = price
         this.img = img
+        this.num = num
     }
 
     @JvmName("getKey1")
@@ -55,5 +57,15 @@ class Item {
     @JvmName("setImg1")
     fun setImg(img: Int) {
         this.img = img
+    }
+
+    @JvmName("getNum1")
+    fun getNum(): Int {
+        return this.num
+    }
+
+    @JvmName("setNum1")
+    fun setNum(num: Int) {
+        this.num = num
     }
 }

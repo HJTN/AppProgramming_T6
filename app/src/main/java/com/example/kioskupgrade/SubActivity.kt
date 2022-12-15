@@ -173,6 +173,7 @@ class OrderAdapter(val context: Context, val order : ArrayList<String>) : BaseAd
                 numList.removeAt(position)
                 priceList.removeAt(position)
                 orderList.removeAt(position)
+                stocks.removeAt(position)
                 totalPrice -= subPriceList[position]
                 subPriceList.removeAt(position)
 
@@ -220,31 +221,45 @@ class MenuAdapter(val dataSet: MutableList<Item>): RecyclerView.Adapter<Recycler
         val binding = (holder as MenuViewHolder).binding
         val decimalFormat = DecimalFormat("#,###")
 
-        binding.itemName.text = dataSet[position].name
-        binding.itemPrice.text = decimalFormat.format(dataSet[position].price) + " 원"
-        binding.itemImg.setImageResource(dataSet[position].img)
+        if (dataSet[position].num > 0) {
+            binding.itemName.text = dataSet[position].name
+            binding.itemPrice.text = decimalFormat.format(dataSet[position].price) + " 원"
+            binding.itemImg.setImageResource(dataSet[position].img)
 
-        binding.itemButton.setOnClickListener(View.OnClickListener {
-            stocks.add(dataSet[position].key)
-            if (orderList.contains(dataSet[position].getName())) {
-                val idx = orderList.indexOf(dataSet[position].getName())
-                numList[idx] += 1
-                priceList[idx] += dataSet[position].getPrice()
-            }
-            else {
-                orderList.add(dataSet[position].getName())
-                numList.add(1)
-                priceList.add(dataSet[position].getPrice())
-                subPriceList.add(dataSet[position].getPrice())
-            }
+            binding.itemButton.setOnClickListener(View.OnClickListener {
+                if (orderList.contains(dataSet[position].getName())) {
+                    val idx = orderList.indexOf(dataSet[position].getName())
+                    numList[idx] += 1
+                    priceList[idx] += dataSet[position].getPrice()
+                } else {
+                    stocks.add(dataSet[position].key)
+                    orderList.add(dataSet[position].getName())
+                    numList.add(1)
+                    priceList.add(dataSet[position].getPrice())
+                    subPriceList.add(dataSet[position].getPrice())
+                }
 
-            totalPrice = totalPrice + dataSet[position].price
-            priceText.text = "가격: " + decimalFormat.format(totalPrice) + " 원"
-            adapter?.notifyDataSetChanged()
-            Log.d("order", "new: num=${numList.size.toString()} , order=${orderList.size.toString()}" +
-                    " , price=${priceList.size.toString()} , subprice=${subPriceList.size.toString()}" )
-            Toast.makeText(binding.root.context, "${binding.itemName.text} Clicked", Toast.LENGTH_SHORT).show()
-        })
+                totalPrice = totalPrice + dataSet[position].price
+                priceText.text = "가격: " + decimalFormat.format(totalPrice) + " 원"
+                adapter?.notifyDataSetChanged()
+                Log.d(
+                    "order",
+                    "new: num=${numList.size.toString()} , order=${orderList.size.toString()}" +
+                            " , price=${priceList.size.toString()} , subprice=${subPriceList.size.toString()}"
+                )
+                Toast.makeText(
+                    binding.root.context,
+                    "${binding.itemName.text} Clicked",
+                    Toast.LENGTH_SHORT
+                ).show()
+            })
+        } else {
+            binding.itemSoldout.visibility = View.VISIBLE
+            binding.itemSoldout.bringToFront()
+            binding.itemName.text = dataSet[position].name
+            binding.itemPrice.text = decimalFormat.format(dataSet[position].price) + " 원"
+            binding.itemImg.setImageResource(dataSet[position].img)
+        }
     }
 
     override fun getItemCount(): Int {

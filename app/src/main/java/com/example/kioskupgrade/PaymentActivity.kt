@@ -55,22 +55,23 @@ class paymentActivity : AppCompatActivity() {
 
         itemKeys = intent.getStringArrayListExtra("keys")
         database = Firebase.database.reference
-        for (k in itemKeys!!) {
+        Log.d("Data Check", itemKeys?.size.toString())
+        for (k in 0..itemKeys!!.size-1) {
             var tempItem = mutableMapOf<String, Int>()
 
-            database.child(k).addValueEventListener(object: ValueEventListener{
+            database.child(itemKeys!![k]).addValueEventListener(object: ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    tempItem.put("num",snapshot.child("num").value.toString().toInt()-1)
-                    tempItem.put("rescent_sale",snapshot.child("rescent_sale").value.toString().toInt()+1)
-                    tempItem.put("today_sale",snapshot.child("today_sale").value.toString().toInt()+1)
-                    tempItem.put("twoweek_sale",snapshot.child("twoweek_sale").value.toString().toInt()+1)
-                    tempItem.put("onemonth_sale",snapshot.child("onemonth_sale").value.toString().toInt()+1)
+                    tempItem.put("num",snapshot.child("num").value.toString().toInt() - numbs[k])
+                    tempItem.put("rescent_sale",snapshot.child("rescent_sale").value.toString().toInt() + numbs[k])
+                    tempItem.put("today_sale",snapshot.child("today_sale").value.toString().toInt() + numbs[k])
+                    tempItem.put("twoweek_sale",snapshot.child("twoweek_sale").value.toString().toInt() + numbs[k])
+                    tempItem.put("onemonth_sale",snapshot.child("onemonth_sale").value.toString().toInt() + numbs[k])
                 }
                 override fun onCancelled(error: DatabaseError) {
                     Log.d("Error",error.message)
                 }
             })
-            currentStock.put(k, tempItem)
+            currentStock.put(itemKeys!![k], tempItem)
         }
 
         adapter = PaymentAdapter(this, items)
@@ -96,7 +97,7 @@ class paymentActivity : AppCompatActivity() {
             override	fun	onClick(dialog:	DialogInterface?, which:	Int)	{
                 //긍정 버튼을 누른다면(결제완료)-> finsh activty 이동->어플 종료후 다시 실행
                 if(which	==	DialogInterface.BUTTON_POSITIVE)	{
-//                    Log.d("Data Check",currentNum.toString())
+                    Log.d("Data Check", currentStock.toString())
                     for (i in currentStock) {
                         Log.d("Data Check",i.value.toString())
                         Firebase.database.reference.child(i.key).updateChildren(i.value)
